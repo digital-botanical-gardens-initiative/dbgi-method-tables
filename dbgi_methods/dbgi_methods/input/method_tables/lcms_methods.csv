@@ -1,0 +1,153 @@
+page,group,parameter,description,unit,source,level,L1 · Synapt XS,L2 · ZenoTOF 8600,L3 · Orbitrap ID-X,L4 · Orbitrap Exploris 120,L5 · Q Exactive Plus,L6 · Q Exactive HF-X
+,,instrument_model,MS instrument (FK to instrument_model),,Directus (+ file),core,Synapt XS,ZenoTOF 8600,Orbitrap ID-X,Orbitrap Exploris 120,Q Exactive Plus,Q Exactive HF-X
+,,source,Where the values come from,,,,garden_defaults.R,garden_defaults.R,"general_ms2_pos.meth (method report, 22.10.2026)",garden_defaults.R (FreeStyle export of the .raw method),garden_defaults.R (Fribourg platform method),garden_defaults.R INSTRUMENT_OVERRIDES (MetaXtract on 6 HF-X RAW files)
+LC system,System,lc_model,LC model,,people,core,Acquity UPLC I-Class,Acquity UPLC I-Class,Vanquish H,,Vanquish Flex,Vanquish Flex
+LC system,System,pressure_upper_limit_bar,Pressure upper limit,bar,mzML/RAW file,core,,,1200,,,
+LC system,System,max_flow_ramp_ml_min2,Maximum flow ramp,mL/min²,mzML/RAW file,core,n/a,n/a,6,,,
+LC system,Autosampler,autosampler_temp_c,Autosampler temperature,°C,mzML/RAW file,core,20,20,10,15,,
+LC system,Autosampler,injection_volume_ul,Injection volume,µL,Directus (+ file),core,1,0.2,1,1,2,1
+LC system,Autosampler,sample_dilution,Extract dilution before injection,,people,optional,1:5,none,none,none,none,none
+LC system,Autosampler,injection_mode,Injection mode,,people (no value yet),optional,,,,,,
+LC system,Autosampler,needle_wash_mode,Needle wash,,people,optional,n/a,n/a,before draw,,,
+LC system,Autosampler,needle_wash_time_s,Needle wash time,s,mzML/RAW file,core,n/a,n/a,5,,,
+LC system,Autosampler,needle_wash_speed_ul_s,Needle wash speed,µL/s,mzML/RAW file,core,n/a,n/a,50,,,
+LC system,Autosampler,draw_speed_ul_s,Draw speed,µL/s,mzML/RAW file,core,n/a,n/a,5,,,
+LC system,Autosampler,dispense_speed_ul_s,Dispense speed,µL/s,mzML/RAW file,core,n/a,n/a,5,,,
+LC system,Autosampler,needle_wash_solvent,Needle wash solvent,,people (no value yet),optional,,,,,,
+LC system,Detectors,uv_detection,UV detector,,mzML/RAW file,core,,,,PDA / DAD,,
+LC system,Detectors,uv_range_nm,UV range / wavelength,nm,mzML/RAW file,core,,,,210-500,,
+LC system,Detectors,uv_rate_hz,UV data rate,Hz,mzML/RAW file,core,,,,5,,
+LC system,Software,lc_software,Acquisition software,,mzML/RAW file,core,MassLynx 4.2,Sciex OS,Xcalibur,Xcalibur 4.4,Xcalibur 3.1,Xcalibur 3.1
+Column & gradient,Column,column_model,Column model,,people,core,Acquity UPLC HSS T3,Acquity Premier HSS T3,Kinetex C18,Kinetex C18,Acquity UPLC BEH C18,Acquity UPLC BEH C18
+Column & gradient,Column,column_length_mm,Length,mm,people,optional,100,50,150,,100,100
+Column & gradient,Column,column_id_mm,Internal diameter,mm,people,optional,2.1,2.1,2.1,,2.1,2.1
+Column & gradient,Column,particle_size_um,Particle size,µm,people,optional,1.8,1.8,2.6,2.6,1.7,1.7
+Column & gradient,Column,pore_size_a,Pore size,Å,people,optional,,,100,,,
+Column & gradient,Column,column_part_number,Part number,,people,optional,,,00F-4462-AN,,,
+Column & gradient,Column,guard_column,Guard column,,people (no value yet),optional,,,,,,
+Column & gradient,Column oven,column_temp_c,Column temperature,°C,mzML/RAW file,core,40,30,40,40,,40
+Column & gradient,Column oven,column_oven_mode,Oven mode,,mzML/RAW file,core,n/a,n/a,forced air,,,
+Column & gradient,Column oven,column_oven_fan_speed,Fan speed,level 1-5,mzML/RAW file,core,n/a,n/a,5,,,
+Column & gradient,Column oven,column_equilibration_time_min,Oven equilibration time,min,mzML/RAW file,core,n/a,n/a,1,,,
+Column & gradient,Column oven,eluent_preheater,Eluent pre-heater,,mzML/RAW file,core,n/a,n/a,off,,,
+Column & gradient,Mobile phase A,mobile_phase_a_solvent,Solvent A,,mzML/RAW file,core,H2O,H2O,H2O,H2O,H2O,H2O
+Column & gradient,Mobile phase A,mobile_phase_a_modifier,Modifier A,,people,optional,formic acid,formic acid,formic acid,formic acid,formic acid,formic acid
+Column & gradient,Mobile phase A,mobile_phase_a_modifier_conc,Modifier concentration A,% v/v or mM,people,optional,0.05,0.05,0.1,0.1,0.1,0.1
+Column & gradient,Mobile phase A,mobile_phase_a_channel,Pump channel A,,mzML/RAW file,core,n/a,n/a,A1,,,
+Column & gradient,Mobile phase B,mobile_phase_b_solvent,Solvent B,,mzML/RAW file,core,ACN,ACN,ACN,ACN,ACN,ACN
+Column & gradient,Mobile phase B,mobile_phase_b_modifier,Modifier B,,people,optional,formic acid,formic acid,formic acid,formic acid,formic acid,formic acid
+Column & gradient,Mobile phase B,mobile_phase_b_modifier_conc,Modifier concentration B,% v/v or mM,people,optional,0.05,0.05,0.1,0.1,0.1,0.1
+Column & gradient,Mobile phase B,mobile_phase_b_channel,Pump channel B,,mzML/RAW file,core,n/a,n/a,B1,,,
+Column & gradient,Gradient,flow_rate_ml_min,Flow rate,mL/min,mzML/RAW file,core,0.5,0.4,0.35,0.35,0.6,0.6
+Column & gradient,Gradient,gradient_table,Gradient program,min · %B · mL/min,mzML/RAW file,core,0:0:0.5; 10:100:0.5; 10:100:0.7; 13:100:0.7; 13:0:0.5; 16:0:0.5,0:2:0.4; 6.5:90:0.4; 6.5:100:0.4; 8.5:100:0.4; 8.5:2:0.4; 10.5:2:0.4,0:5:0.35; 0.5:5:0.35; 15.5:100:0.35; 17.3:100:0.35; 17.3:5:0.35; 19.3:5:0.35,0:5:0.35; 0.5:5:0.35; 15.5:100:0.35; 17.3:100:0.35; 17.3:5:0.35; 19.3:5:0.35,0:2:0.6; 10:100:0.6; 12:100:0.6; 12:2:0.6,0:2:0.6; 10:100:0.6; 12:100:0.6; 12:2:0.6
+Column & gradient,Gradient,gradient_curve,Gradient curve,,mzML/RAW file,core,n/a,n/a,linear (5 / 6),,,
+Column & gradient,Gradient,run_time_min,Total run time,min,mzML/RAW file,core,16,10.5,19.3,19.3,15,15
+Column & gradient,Gradient,divert_valve_program,Divert valve program,,mzML/RAW file,core,,,0 min 1-2; 0.5 min 1-6; 19.3 min 1-2,,,
+Ion source,Source,ionization_source,Ion source type,,mzML/RAW file,core,ZSpray ESI,Turbo V / OptiFlow ESI,H-ESI,H-ESI,HESI-II,HESI-II
+Ion source,Source,ionization_polarity,Polarity,,mzML/RAW file,core,positive,positive,positive,positive,positive,positive
+Ion source,Source,spray_voltage_mode,Spray voltage mode,,mzML/RAW file,core,n/a,n/a,time dependent,,,
+Ion source,Source,spray_voltage_pos_v,"Spray voltage, positive",V,mzML/RAW file,core,n/a,n/a,3000,3000,3500,3500
+Ion source,Source,spray_voltage_neg_v,"Spray voltage, negative",V,mzML/RAW file,core,n/a,n/a,2000,2500,,
+Ion source,Source,spray_voltage_program,Spray voltage program,,mzML/RAW file,core,n/a,n/a,pos: 0 min 0 V; 0.2 min 3000 V; 19.3 min 0 V | neg: 0.2 min 2000 V,,,
+Ion source,Gases & temperatures,gas_mode,Gas mode,,mzML/RAW file,core,n/a,n/a,static,,,
+Ion source,Gases & temperatures,sheath_gas_arb,Sheath gas,arb,mzML/RAW file,core,n/a,n/a,50,50,55,55
+Ion source,Gases & temperatures,aux_gas_arb,Aux gas,arb,mzML/RAW file,core,n/a,n/a,10,10,15,15
+Ion source,Gases & temperatures,sweep_gas_arb,Sweep gas,arb,mzML/RAW file,core,n/a,n/a,1,1,3,3
+Ion source,Gases & temperatures,ion_transfer_tube_c,Ion transfer tube / capillary temperature,°C,mzML/RAW file,core,n/a,n/a,325,325,350,350
+Ion source,Gases & temperatures,vaporizer_temp_c,Vaporizer temperature,°C,mzML/RAW file,core,n/a,n/a,350,350,,
+Ion source,Gases & temperatures,appi_lamp,APPI lamp,,mzML/RAW file,core,n/a,n/a,not in use,,,
+Ion source,Gases & temperatures,faims,FAIMS,,mzML/RAW file,core,n/a,n/a,not installed,,,
+Ion source,Gases & temperatures,use_tune_source_settings,Use ion source settings from Tune,,mzML/RAW file,core,n/a,n/a,FALSE,,,
+Ion source,Source,capillary_voltage_kv,Capillary voltage,kV,to check (file?),optional,1.0,n/a,n/a,n/a,n/a,n/a
+Ion source,Source,sampling_cone_v,Sampling cone,V,to check (file?),optional,40,n/a,n/a,n/a,n/a,n/a
+Ion source,Source,source_offset_v,Source offset,V,people (no value yet),optional,,n/a,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,source_temp_c,Source temperature,°C,to check (file?),optional,140,n/a,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,desolvation_temp_c,Desolvation temperature,°C,to check (file?),optional,500,n/a,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,cone_gas_l_h,Cone gas,L/h,to check (file?),optional,250,n/a,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,desolvation_gas_l_h,Desolvation gas,L/h,to check (file?),optional,1000,n/a,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,nebuliser_bar,Nebuliser,bar,to check (file?),optional,6.5,n/a,n/a,n/a,n/a,n/a
+Ion source,Source,ion_spray_voltage_v,Ion spray voltage,V,to check (file?),optional,n/a,1500,n/a,n/a,n/a,n/a
+Ion source,Source,declustering_potential_v,Declustering potential (DP),V,people (no value yet),optional,n/a,,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,source_temp_tem_c,Source temperature (TEM),°C,to check (file?),optional,n/a,450,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,ion_source_gas1_psi,Ion source gas 1 (GS1),psi,to check (file?),optional,n/a,35,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,ion_source_gas2_psi,Ion source gas 2 (GS2),psi,to check (file?),optional,n/a,70,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,curtain_gas_psi,Curtain gas (CUR),psi,to check (file?),optional,n/a,40,n/a,n/a,n/a,n/a
+Ion source,Gases & temperatures,cad_gas,CAD gas,psi or setting,to check (file?),optional,n/a,7,n/a,n/a,n/a,n/a
+MS1 scan,Global,application_mode,Application mode,,mzML/RAW file,core,n/a,n/a,small molecule,,,
+MS1 scan,Global,expected_lc_peak_width_s,Expected LC peak width,s,mzML/RAW file,core,n/a,n/a,6,8,,
+MS1 scan,Global,advanced_peak_determination,Advanced peak determination,,mzML/RAW file,core,n/a,n/a,FALSE,,,
+MS1 scan,Global,default_charge_state,Default charge state,,mzML/RAW file,core,n/a,n/a,1,,,
+MS1 scan,Global,acquirex_modifications,AcquireX method modifications,,mzML/RAW file,core,n/a,n/a,FALSE,,,
+MS1 scan,Global,experiment_cycle_time_s,Cycle time,s,mzML/RAW file,core,n/a,n/a,0.6,,,
+MS1 scan,Global,experiment_start_min,Experiment start,min,mzML/RAW file,core,,,0,,,
+MS1 scan,Global,experiment_end_min,Experiment end,min,mzML/RAW file,core,,,19.3,,,
+MS1 scan,Full scan,ms1_detector,Detector,,mzML/RAW file,core,n/a,n/a,Orbitrap,Orbitrap,Orbitrap,Orbitrap
+MS1 scan,Full scan,ms1_resolution,Resolution,FWHM at m/z 200,mzML/RAW file,core,n/a,n/a,60000,60000,35000,45000
+MS1 scan,Full scan,quadrupole_isolation,Use quadrupole isolation,,mzML/RAW file,core,n/a,n/a,TRUE,,,
+MS1 scan,Full scan,ms1_mz_min,"Scan range, from",m/z,mzML/RAW file,core,50,10,100,100,,120
+MS1 scan,Full scan,ms1_mz_max,"Scan range, to",m/z,mzML/RAW file,core,1200,1000,1000,1000,,1800
+MS1 scan,Full scan,rf_lens_pct,RF lens / S-lens,%,mzML/RAW file,core,n/a,n/a,45,45,50,50
+MS1 scan,Full scan,ms1_agc_mode,AGC target,,mzML/RAW file,core,n/a,n/a,Custom,Custom,,
+MS1 scan,Full scan,ms1_agc_normalized_pct,Normalized AGC target,%,mzML/RAW file,core,n/a,n/a,50,50,,
+MS1 scan,Full scan,ms1_agc_absolute,Absolute AGC value,charges,mzML/RAW file,core,n/a,n/a,200000,500000,,3000000
+MS1 scan,Full scan,ms1_max_it_mode,Maximum injection time mode,,mzML/RAW file,core,n/a,n/a,Custom,,Auto,Custom
+MS1 scan,Full scan,ms1_max_it_ms,Maximum injection time,ms,mzML/RAW file,core,n/a,n/a,118,118,,100
+MS1 scan,Full scan,ms1_microscans,Microscans,,mzML/RAW file,core,n/a,n/a,1,,,
+MS1 scan,Full scan,ms1_data_type,Data type,,mzML/RAW file,core,n/a,n/a,Profile,Centroid,,
+MS1 scan,Full scan,source_fragmentation_v,Source fragmentation (in-source CID),V (empty = disabled),people (no value yet),optional,n/a,n/a,,,,
+MS1 scan,Full scan,ms1_scan_time_s,MS scan time,s,to check (file?),optional,0.1,0.05,n/a,n/a,n/a,n/a
+MS1 scan,Full scan,tof_resolution_mode,Analyser mode,,people (no value yet),optional,,n/a,n/a,n/a,n/a,n/a
+MS1 scan,Full scan,ion_mobility,Ion mobility (HDMS),,people (no value yet),optional,,n/a,n/a,n/a,n/a,n/a
+MS1 scan,Full scan,ms1_data_format,Data format,,people (no value yet),optional,,n/a,n/a,n/a,n/a,n/a
+MS1 scan,Full scan,ms1_collision_energy_v,TOF MS collision energy,V,people (no value yet),optional,n/a,,n/a,n/a,n/a,n/a
+MS2 & data-dependent,Acquisition,acquisition_mode,Acquisition mode,,mzML/RAW file,core,DDA,DDA,DDA,DDA,DDA,DDA
+MS2 & data-dependent,Acquisition,dd_mode,Data-dependent mode,,mzML/RAW file,core,top N,top N,cycle time,top N,top N,top N
+MS2 & data-dependent,Acquisition,dd_cycle_time_s,Time between master scans,s,mzML/RAW file,core,n/a,n/a,0.6,,,
+MS2 & data-dependent,Acquisition,dd_top_n,Top N / max candidate ions,precursors,mzML/RAW file,core,7,9,,4,3,5
+MS2 & data-dependent,Filters,intensity_threshold,Intensity threshold,counts or cps,mzML/RAW file,core,25000,2000,100000,250000,,160000
+MS2 & data-dependent,Filters,charge_state_filter,Charge states included,,people (no value yet),optional,,,,,,
+MS2 & data-dependent,Filters,dyn_excl_after_n,Dynamic exclusion: after n times,,mzML/RAW file,core,n/a,n/a,1,1,,
+MS2 & data-dependent,Filters,dyn_excl_duration_s,Dynamic exclusion duration,s,mzML/RAW file,core,1.5,3,2,2,3,2
+MS2 & data-dependent,Filters,dyn_excl_tolerance_ppm,Dynamic exclusion mass tolerance (± ppm),ppm,mzML/RAW file,core,n/a,,5,5,,
+MS2 & data-dependent,Filters,dyn_excl_isotopes,Exclude isotopes,,mzML/RAW file,core,n/a,n/a,TRUE,TRUE,,TRUE
+MS2 & data-dependent,Filters,dyn_excl_within_cycle,Exclude within cycle,,mzML/RAW file,core,n/a,n/a,TRUE,,,
+MS2 & data-dependent,Filters,apex_detection_fwhm_s,Apex detection: expected peak FWHM,s,mzML/RAW file,core,n/a,n/a,4,,,
+MS2 & data-dependent,Filters,apex_window_pct,Apex detection: desired apex window,%,mzML/RAW file,core,n/a,n/a,50,,,
+MS2 & data-dependent,Filters,isotope_exclusion,Isotope exclusion,,mzML/RAW file,core,n/a,n/a,assigned,,,
+MS2 & data-dependent,Filters,exclusion_list_mz,Targeted exclusion list,m/z,mzML/RAW file,core,200 most intense blank ions,,158.1538,~210 background ions,,
+MS2 & data-dependent,Filters,exclusion_list_tolerance_ppm,Exclusion list tolerance (±),ppm,mzML/RAW file,core,±40 mDa,,10,,,
+MS2 & data-dependent,Filters,exclusion_list_isotopes,Exclusion list: exclude isotopes,,mzML/RAW file,core,n/a,n/a,TRUE,,,
+MS2 & data-dependent,Filters,background_subtraction,Dynamic background subtraction,,to check (file?),optional,n/a,TRUE,n/a,n/a,n/a,n/a
+MS2 & data-dependent,Fragmentation,fragmentation_method,Activation type,,mzML/RAW file,core,CID,CID,HCD,HCD,HCD,HCD
+MS2 & data-dependent,Fragmentation,isolation_mode,Isolation mode,,mzML/RAW file,core,n/a,n/a,quadrupole,,,
+MS2 & data-dependent,Fragmentation,isolation_window_mz,Isolation window,m/z,mzML/RAW file,core,n/a,n/a,0.8,0.8,1.0,2.0
+MS2 & data-dependent,Fragmentation,isolation_offset,Isolation offset,,mzML/RAW file,core,n/a,n/a,off,,,
+MS2 & data-dependent,Fragmentation,q1_resolution,Q1 resolution,,to check (file?),optional,n/a,unit,n/a,n/a,n/a,n/a
+MS2 & data-dependent,Fragmentation,ce_type,Collision energy type,,mzML/RAW file,core,n/a,n/a,normalized (%),normalized (%),normalized (%),normalized (%)
+MS2 & data-dependent,Fragmentation,ce_mode,Collision energy mode,,mzML/RAW file,core,ramped,dynamic,fixed,fixed,stepped,stepped
+MS2 & data-dependent,Fragmentation,ce_values,Collision energy / energies,% or V,mzML/RAW file,core,,"intercept 15, slope 0.05, max 80",35,35,15;30;45,15;30;45
+MS2 & data-dependent,Fragmentation,assisted_ce,Assisted collision energy,,mzML/RAW file,core,n/a,n/a,FALSE,,,
+MS2 & data-dependent,Fragmentation,ce_low_ramp,Low-mass CE ramp,V,to check (file?),optional,5-40,n/a,n/a,n/a,n/a,n/a
+MS2 & data-dependent,Fragmentation,ce_high_ramp,High-mass CE ramp,V,to check (file?),optional,20-70,n/a,n/a,n/a,n/a,n/a
+MS2 & data-dependent,Fragmentation,ce_spread_v,Collision energy spread (CES),V,to check (file?),optional,n/a,10,n/a,n/a,n/a,n/a
+MS2 & data-dependent,MS2 scan,ms2_detector,Detector,,mzML/RAW file,core,n/a,n/a,Orbitrap,Orbitrap,Orbitrap,Orbitrap
+MS2 & data-dependent,MS2 scan,ms2_resolution,Resolution,FWHM at m/z 200,mzML/RAW file,core,n/a,n/a,15000,15000,17500,30000
+MS2 & data-dependent,MS2 scan,ms2_scan_range_mode,Scan range mode,,mzML/RAW file,core,n/a,n/a,auto,,,
+MS2 & data-dependent,MS2 scan,ms2_mz_min,"MS2 range, from",m/z,mzML/RAW file,core,50,50,,,,200
+MS2 & data-dependent,MS2 scan,ms2_mz_max,"MS2 range, to",m/z,mzML/RAW file,core,1200,1000,,,,2000
+MS2 & data-dependent,MS2 scan,ms2_agc_mode,AGC target,,mzML/RAW file,core,n/a,n/a,Standard,Standard,,
+MS2 & data-dependent,MS2 scan,ms2_agc_absolute,Absolute AGC value,charges,mzML/RAW file,core,n/a,n/a,50000,,,100000
+MS2 & data-dependent,MS2 scan,ms2_max_it_mode,Maximum injection time mode,,mzML/RAW file,core,n/a,n/a,Custom,,Auto,Custom
+MS2 & data-dependent,MS2 scan,ms2_max_it_ms,Maximum injection time,ms,mzML/RAW file,core,n/a,n/a,80,80,,50
+MS2 & data-dependent,MS2 scan,ms2_microscans,Microscans,,mzML/RAW file,core,n/a,n/a,1,,,
+MS2 & data-dependent,MS2 scan,ms2_data_type,Data type,,mzML/RAW file,core,n/a,n/a,Profile,Profile,,
+MS2 & data-dependent,MS2 scan,ms2_scan_time_s,MS/MS scan time,s,to check (file?),optional,0.05,0.025,n/a,n/a,n/a,n/a
+MS2 & data-dependent,MS2 scan,zeno_pulsing,Zeno pulsing,,to check (file?),optional,n/a,TRUE,n/a,n/a,n/a,n/a
+MS2 & data-dependent,MS2 scan,zeno_threshold,Zeno threshold,cps,to check (file?),optional,n/a,1000000,n/a,n/a,n/a,n/a
+Calibration & data,Calibration,lock_mass_correction,Lock mass / internal calibration,,mzML/RAW file,core,LockSpray leucine-enkephalin,,RunStart EASY-IC,RunStart EASY-IC,,"lock mass (Thermo, m/z 391.2843)"
+Calibration & data,Calibration,lockmass_interval_s,Lock mass reference interval,s,to check (file?),optional,20,n/a,n/a,n/a,n/a,n/a
+Calibration & data,Calibration,external_calibration,External calibration,,people,optional,sodium formate,,,,caffeine / MRFA / Ultramark 1621,caffeine / MRFA / Ultramark 1621
+Calibration & data,Calibration,calibration_frequency,Calibration frequency,,people (no value yet),optional,,,,,,
+Calibration & data,Instrument,instrument_serial,Instrument serial number,,people,optional,,FR20182507,FSN30172,MB10922C,,
+Calibration & data,Instrument,method_file_name,Method file name,,mzML/RAW file,core,UltrafastDDA_50-1200_10min_pos.EXP (inlet 100x21_HSS_metabo_DDA_10min; tune DBA023-UPLC_low_stepwave.IPR),DDA_pos_9MSMS_6.5min,general_ms2_pos.meth,posESI_Top4_hcd35_350ACN20min_40C_2-6umKinetexC18_ExcList.meth,,20250319_PMA_C18_DDA_pos.meth / _neg.meth
+Calibration & data,Instrument,ms_software,MS acquisition software,,mzML/RAW file,core,MassLynx 4.2,Sciex OS,Xcalibur,Xcalibur 4.4,Xcalibur 3.1,Xcalibur 3.1

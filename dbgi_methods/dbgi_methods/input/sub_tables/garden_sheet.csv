@@ -1,0 +1,21 @@
+id,garden,description,details,qfield_project,kind,n_samples (Directus)
+1,JBN,Jardin botanique de Neuchatel.,Neuchatel Synapt XS batch 2025.,jbn,botanical garden,1332
+2,JBC,Garden code JBC.,ZenoTOF batch 2026. Full name to add.,jbc,botanical garden,1621
+3,JBP,Prague garden collection.,Orbitrap ID-X batch 2026.,jbp; jbp-new,botanical garden,1090
+4,JBUF,Jardin botanique de l'Universite de Fribourg.,Q Exactive batch 2024.,jbuf,botanical garden,2533
+5,JBK,"Royal Botanic Gardens, Kew.",Exploris 120 batch 2025.,kew-botanical-gardens,botanical garden,635
+6,DROGUIER_JBN,QField project in Directus.,,droguier_jbn,botanical garden,527
+7,FUNG,QField project in Directus.,,fung,field project,499
+8,ARTEMISIA_ABSINTHIUM,QField project in Directus.,,artemisia_absinthium,field project,495
+9,MEDICIN_ALPS,QField project in Directus.,,medicin_alps,field project,487
+10,CHAMPEX_GRADIENT,QField project in Directus.,,champex_gradient,field project,405
+11,BIOBLITZ_VINESCH,QField project in Directus.,,bioblitz_vinesch,field project,257
+12,MACEDONIA,QField project in Directus.,,macedonia,field project,188
+13,JBN-NEW,QField project in Directus.,,jbn-new,botanical garden,112
+14,HELOISE_BACHELOR_FIBL,QField project in Directus.,,heloise_bachelor_FiBL,field project,109
+15,CHEMICAL_ECOLOGY,QField project in Directus.,,chemical_ecology,field project,105
+16,MANASLU,QField project in Directus.,,manaslu,field project,84
+17,SBL_20004,QField project in Directus.,,sbl_20004,field project,37
+18,BG-UNIFR,QField project in Directus.,,bg-unifr,botanical garden,26
+19,EMI,QField project in Directus.,,emi,field project,9
+20,SANDBOX,QField project in Directus.,,sandbox,field project,1

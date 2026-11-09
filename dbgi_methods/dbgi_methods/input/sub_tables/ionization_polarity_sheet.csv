@@ -1,0 +1,4 @@
+id,ionization_polarity,description,details
+1,positive,Positive ions.,MS:1000130
+2,negative,Negative ions.,MS:1000129
+3,positive/negative switching,Both polarities in one run.,

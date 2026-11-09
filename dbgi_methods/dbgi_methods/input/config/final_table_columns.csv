@@ -1,0 +1,87 @@
+column,label,step,vocabulary,level,source
+garden_id,Garden / QField project,0. Directus,garden,core,Directus
+collector,Collector,0. Directus,person,core,Directus
+observation_subject,Organ,0. Directus,observation_subject,core,Directus
+extraction_method,Extraction method (Directus),0. Directus,extraction_methods,core,Directus
+identification_method,Identification method,1. Identification,identification_method,core,people
+preservation_method,Preservation method,2. Sampling,preservation_method,core,people
+air_drying_place,Where the samples dry,2. Sampling,air_drying_place,optional,people
+oven_type,Oven type,2. Sampling,oven_type,optional,people
+ethanol_liquid_use,What is done with the ethanol,2. Sampling,ethanol_liquid_use,optional,people
+rnalater_removal,How RNAlater is removed before extraction,2. Sampling,rnalater_removal,optional,people
+ethanol_tissue_disruption,How the tissue is cut,2. Sampling,field_disruption,optional,people
+rnalater_tissue_disruption,How the tissue is cut,2. Sampling,field_disruption,optional,people
+field_disruption,How the tissue is broken up,2. Sampling,field_disruption,optional,people
+field_mass_method,How the tissue amount is measured,2. Sampling,field_mass_method,optional,people
+ethanol_container,Container,2. Sampling,field_extraction_tube,optional,people
+rnalater_container,Container,2. Sampling,field_extraction_tube,optional,people
+field_extraction_tube,Tube,2. Sampling,field_extraction_tube,optional,people
+field_extract_postprocessing,Treatment back in the lab,2. Sampling,field_extract_postprocessing,optional,people
+primary_packaging,Primary packaging (in contact with the tissue),2. Sampling,primary_packaging,core,people
+secondary_packaging,Secondary packaging (outer container),2. Sampling,secondary_packaging,optional,people
+field_extract_temperature,Extract temperature until the lab,2. Sampling,transport_temperature,optional,people
+transport_temperature,Transport temperature,2. Sampling,transport_temperature,core,people
+transport_duration,Transport duration (field to lab),2. Sampling,transport_duration,core,people
+ethanol_storage_temperature,Storage temperature,2. Sampling,storage_temperature,optional,people
+rnalater_storage_temperature,Storage temperature,2. Sampling,storage_temperature,optional,people
+dried_storage_temperature,Storage temperature after drying,2. Sampling,storage_temperature,optional,people
+storage_temperature,Storage temperature before extraction,2. Sampling,storage_temperature,core,people
+storage_container,Storage container,2. Sampling,storage_container,optional,people
+lab_drying,Drying in the lab,3. Lab drying,lab_drying,core,people
+time_before_drying,Delay before drying,3. Lab drying,time_before_drying,core,people
+material_state,Material weighed and extracted (fresh / dry weight),4. Extraction,material_state,core,people
+grinding_device,Grinding device,4. Extraction,grinding_device,core,people
+bead_homog_device,Device,4. Extraction,grinding_device,optional,people
+field_beads,Beads,4. Extraction,grinding_beads,optional,people
+grinding_beads,Beads,4. Extraction,grinding_beads,optional,people
+grinding_precooling,Pre-cooling,4. Extraction,grinding_precooling,optional,people
+field_extraction_solvent,Extraction solvent,4. Extraction,extraction_solvent,optional,people
+extraction_solvent,Extraction solvent,4. Extraction,extraction_solvent,core,"Directus (Extraction_Methods, name only)"
+extraction_agitation,Agitation,4. Extraction,extraction_agitation,core,people
+shaker_type,Shaker type,4. Extraction,shaker_type,optional,people
+sonication_type,Sonicator type,4. Extraction,sonication_type,optional,people
+filtration,Filtration,4. Extraction,filtration,core,people
+extract_storage_temperature,Extract storage temperature,4. Extraction,extract_storage_temperature,core,people
+extract_evaporation_method,Evaporation method,4. Extraction,extract_evaporation_method,optional,people
+field_redissolution_solvent,Redissolution solvent,4. Extraction,redissolution_solvent,optional,people
+redissolution_solvent,Redissolution solvent,4. Extraction,redissolution_solvent,optional,people
+extract_container,Extract container,4. Extraction,extract_container,optional,Directus (Container_Models)
+instrument_model,MS instrument model,5. LC-MS,instrument_model,core,Directus (+ file)
+lc_model,LC model,5. LC-MS,lc_model,core,people
+column_model,Column model,5. LC-MS,column_model,core,people
+injection_mode,Injection mode,5. LC-MS,injection_mode,optional,people (no value yet)
+needle_wash_mode,Needle wash,5. LC-MS,needle_wash_mode,optional,people
+uv_detection,UV detector,5. LC-MS,uv_detection,core,mzML/RAW file
+column_oven_mode,Oven mode,5. LC-MS,column_oven_mode,core,mzML/RAW file
+mobile_phase_a_solvent,Solvent A,5. LC-MS,mobile_phase_solvent,core,mzML/RAW file
+mobile_phase_b_solvent,Solvent B,5. LC-MS,mobile_phase_solvent,core,mzML/RAW file
+mobile_phase_a_modifier,Modifier A,5. LC-MS,mobile_phase_modifier,optional,people
+mobile_phase_b_modifier,Modifier B,5. LC-MS,mobile_phase_modifier,optional,people
+sample_dilution,Extract dilution before injection,5. LC-MS,sample_dilution,optional,people
+gradient_curve,Gradient curve,5. LC-MS,gradient_curve,core,mzML/RAW file
+ionization_source,Ion source type,5. LC-MS,ionization_source,core,mzML/RAW file
+ionization_polarity,Polarity,5. LC-MS,ionization_polarity,core,mzML/RAW file
+spray_voltage_mode,Spray voltage mode,5. LC-MS,spray_voltage_mode,core,mzML/RAW file
+faims,FAIMS,5. LC-MS,faims,core,mzML/RAW file
+acquisition_mode,Acquisition mode,5. LC-MS,acquisition_mode,core,mzML/RAW file
+dd_mode,Data-dependent mode,5. LC-MS,dd_mode,core,mzML/RAW file
+isotope_exclusion,Isotope exclusion,5. LC-MS,isotope_exclusion,core,mzML/RAW file
+fragmentation_method,Activation type,5. LC-MS,fragmentation_method,core,mzML/RAW file
+isolation_mode,Isolation mode,5. LC-MS,isolation_mode,core,mzML/RAW file
+ce_type,Collision energy type,5. LC-MS,ce_type,core,mzML/RAW file
+ce_mode,Collision energy mode,5. LC-MS,ce_mode,core,mzML/RAW file
+ms1_agc_mode,AGC target,5. LC-MS,agc_mode,core,mzML/RAW file
+ms2_agc_mode,AGC target,5. LC-MS,agc_mode,core,mzML/RAW file
+ms1_max_it_mode,Maximum injection time mode,5. LC-MS,max_it_mode,core,mzML/RAW file
+ms2_max_it_mode,Maximum injection time mode,5. LC-MS,max_it_mode,core,mzML/RAW file
+ms1_data_type,Data type,5. LC-MS,data_type,core,mzML/RAW file
+ms2_data_type,Data type,5. LC-MS,data_type,core,mzML/RAW file
+lock_mass_correction,Lock mass / internal calibration,5. LC-MS,lock_mass_correction,core,mzML/RAW file
+external_calibration,External calibration,5. LC-MS,external_calibration,optional,people
+background_exclusion,Background exclusion strategy,5. LC-MS,background_exclusion,optional,people
+q1_resolution,Q1 resolution,5. LC-MS,q1_resolution,optional,to check (file?)
+lc_software,Acquisition software,5. LC-MS,acquisition_software,core,mzML/RAW file
+ms_software,MS acquisition software,5. LC-MS,acquisition_software,optional,people
+raw_conversion_tool,Raw to mzML conversion,6. Data processing,raw_conversion_tool,core,people
+peak_picking,Peak picking,6. Data processing,peak_picking,optional,people
+processing_software,Processing software,6. Data processing,processing_software,core,people

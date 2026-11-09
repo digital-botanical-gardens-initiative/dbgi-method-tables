@@ -1,0 +1,7 @@
+id,field_disruption,description,details
+1,none (whole tissue),Tissue put whole into the solvent.,"Slower, less complete extraction; note soaking time."
+2,cut with scissors/scalpel,Cut into small pieces directly into the tube.,Clean blades with solvent between samples.
+3,leaf punch discs,Fixed-area discs punched straight into the tube.,Gives a standardised amount without a balance; disc diameter and number in Field extraction > Discs.
+4,crushed with pestle in tube,Ground in the tube with a disposable micro-pestle.,
+5,portable bead-beater,Battery or hand-held homogeniser with beads.,"Model, beads and duration in Field extraction > Bead-beater."
+6,mortar and pestle,"Ground in a mortar, then transferred to the solvent.",

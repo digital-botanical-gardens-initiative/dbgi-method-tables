@@ -1,0 +1,3 @@
+drying_method_id,lab_drying,time_before_drying,lab_drying_duration_h
+D1,freeze_drying,>=48h at -80C,
+D2,freeze_drying,immediately on arrival,

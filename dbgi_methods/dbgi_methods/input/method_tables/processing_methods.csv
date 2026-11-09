@@ -1,0 +1,3 @@
+processing_method_id,raw_conversion_tool,processing_software,raw_conversion_version,mzbatch_file
+P1,DataConvert (Waters),MZmine 4.10.6,,
+P2,MSConvert (ProteoWizard),MZmine 4.10.6,,

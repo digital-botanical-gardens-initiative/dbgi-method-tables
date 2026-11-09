@@ -1,0 +1,6 @@
+id,sample_dilution,description,details
+1,none,Injected undiluted.,
+2,1:2,,
+3,1:5,,Neuchatel protocol (1 uL of 1:5).
+4,1:10,,
+5,1:20,,

@@ -1,0 +1,5 @@
+id,time_before_drying,description,details
+1,immediately on arrival,Put in the freeze-dryer as soon as it reaches the lab.,"Prague: dry ice, then straight to the freeze-dryer."
+2,<24h at -80C,Stored at -80 C for less than 24 h.,
+3,>=48h at -80C,Stored at least 48 h at -80 C before drying.,Neuchâtel's protocol.
+4,>1 week at -80C,Long storage before drying.,Actual delay in Lab drying > Delay.

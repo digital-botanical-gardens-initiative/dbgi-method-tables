@@ -1,0 +1,4 @@
+sampling_method_id,preservation_method,primary_packaging,secondary_packaging,transport_temperature,transport_duration,storage_temperature,storage_container
+S1,liquid_N2,aluminium foil,falcon tube 50 mL,liquid_N2,<8h,-80C,falcon tube
+S2,silica_gel,coffee filter,zip bag,ambient,<48h,-80C,falcon tube
+S3,dry_ice,aluminium foil,falcon tube 50 mL,dry_ice,<8h,-80C,falcon tube

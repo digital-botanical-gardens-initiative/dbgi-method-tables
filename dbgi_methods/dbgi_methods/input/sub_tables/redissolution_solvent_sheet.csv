@@ -1,0 +1,6 @@
+id,redissolution_solvent,description,details
+1,MeOH:H2O 80:20,,Same as extraction solvent.
+2,MeOH:H2O 50:50,,
+3,MeOH 100,,
+4,ACN:H2O 50:50,,
+5,initial mobile phase,Same composition as the start of the gradient.,Best peak shape for early eluters.

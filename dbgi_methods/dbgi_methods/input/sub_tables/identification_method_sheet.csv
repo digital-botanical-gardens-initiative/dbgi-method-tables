@@ -1,0 +1,7 @@
+id,identification_method,description,details
+1,botanical_garden_ID,Name taken from the garden's accession catalogue / label.,Standard for DBGI garden collections. Keep the accession number.
+2,morphology,Identified in the field from morphological characters.,
+3,flora_key,Identified with a determination key or flora.,Flora in Plant material > Identification.
+4,DNA_barcoding,"Identified from DNA barcodes (rbcL, matK, ITS...).",
+5,expert,Identified or confirmed by a taxonomic specialist.,Name in Plant material > Identification.
+6,image_AI,"Identified with an image recognition app (iNaturalist, Pl@ntNet).",Lowest confidence; confirm when possible.

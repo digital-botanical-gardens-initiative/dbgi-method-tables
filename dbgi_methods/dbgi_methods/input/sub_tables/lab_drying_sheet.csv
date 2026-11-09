@@ -1,0 +1,5 @@
+id,lab_drying,description,details
+1,none,"Extracted frozen, never dried.",
+2,freeze_drying,Lyophilised under vacuum.,"Record delay before drying, duration and freeze-dryer."
+3,oven_drying,Dried in an oven.,Temperature and duration on the Lab drying page.
+4,silica_gel,Dried with silica gel in the lab.,

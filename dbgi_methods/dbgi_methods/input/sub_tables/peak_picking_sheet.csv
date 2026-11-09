@@ -1,0 +1,5 @@
+id,peak_picking,description,details
+1,vendor algorithm,Vendor centroiding inside MSConvert.,
+2,CWT,MSConvert wavelet algorithm.,
+3,centroided at acquisition,,
+4,none (profile kept),,

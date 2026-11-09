@@ -1,0 +1,7 @@
+id,filtration,description,details
+1,none,Centrifugation only.,DBGI standard.
+2,0.22 um PTFE,0.22 um PTFE syringe filter.,
+3,0.22 um PVDF,0.22 um PVDF filter.,
+4,0.45 um PTFE,0.45 um PTFE filter.,
+5,filter plate,96-well filter plate.,
+6,SPE,Solid-phase extraction clean-up.,Parameters on the SPE clean-up page.

@@ -1,0 +1,6 @@
+sample_id,mzml_filename,garden,what,value
+dbgi_003194,202404241651_EB_dbgi_003194_02_01.mzML,JBUF,Directus extraction method not in extraction_methods.csv,1
+dbgi_003210,202404241651_EB_dbgi_003210_02_01.mzML,JBUF,Directus extraction method not in extraction_methods.csv,1
+dbgi_009780,,JBK,value not in vocabulary 'person' (collector),Mazzarine Laboureau; Davide; Katerina
+dbgi_009783,,JBK,value not in vocabulary 'person' (collector),Mazzarine Laboureau; Davide; Katerina
+dbgi_009786,,JBK,value not in vocabulary 'person' (collector),Mazzarine Laboureau; Davide; Katerina

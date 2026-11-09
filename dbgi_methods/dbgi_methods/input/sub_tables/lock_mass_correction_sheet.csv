@@ -1,0 +1,7 @@
+id,lock_mass_correction,description,details
+1,RunStart EASY-IC,Fluoranthene internal calibrant at the start of the run (Thermo).,
+2,scan-to-scan EASY-IC,Internal calibrant in every scan.,
+3,LockSpray leucine-enkephalin,Waters lock mass.,
+4,CDS,Sciex calibrant delivery system.,
+5,off,,
+6,"lock mass (Thermo, m/z 391.2843)",Thermo lock mass on a background ion (diisooctyl phthalate).,"Fribourg HF-X: rarely found (<5% of scans), so mostly external calibration."

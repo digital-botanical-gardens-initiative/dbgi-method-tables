@@ -1,0 +1,12 @@
+id,lc_model,vendor,chromatography_type,pump_configuration,description,details
+1,Vanquish H,Thermo Scientific,UHPLC,dual (tandem),"Thermo Vanquish (Horizon) UHPLC, as reported in the RAW method.",JBP RAW method: 'Instrument: Vanquish_H'.
+2,Vanquish Horizon,Thermo Scientific,,,"Thermo UHPLC, 1500 bar.",
+3,Vanquish Flex,Thermo Scientific,UHPLC,,"Thermo UHPLC, 1000 bar.",
+4,Vanquish Duo,Thermo Scientific,,,Thermo dual-flow UHPLC.,
+5,Vanquish (model not recorded),Thermo Scientific,,,"Thermo Vanquish, model unknown.",
+6,Acquity UPLC I-Class,Waters,UPLC,binary,"Waters UPLC, low dispersion.",
+7,Acquity UPLC H-Class,Waters,,,Waters quaternary UPLC.,
+8,Acquity Premier,Waters,,,"Waters, MaxPeak surfaces.",
+9,ExionLC AD,Sciex,,,Sciex UHPLC.,
+10,1290 Infinity II,Agilent,,,Agilent UHPLC.,
+11,Nexera X2,Shimadzu,,,Shimadzu UHPLC.,

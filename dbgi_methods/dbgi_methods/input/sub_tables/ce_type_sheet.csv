@@ -1,0 +1,3 @@
+id,ce_type,description,details
+1,normalized (%),"Thermo NCE, scaled to m/z and charge.",
+2,absolute (V / eV),Fixed energy in volts.,

@@ -1,0 +1,3 @@
+id,agc_mode,description,details
+1,Standard,Instrument default target.,
+2,Custom,User-defined (normalized % and absolute value).,

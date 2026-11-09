@@ -1,0 +1,6 @@
+extraction_method_id,directus_extraction_method,material_state,grinding_device,grinding_beads,grinding_precooling,extraction_solvent,extraction_agitation,filtration,extract_container,extract_storage_temperature,grinding_time_min,grinding_frequency_hz,extraction_volume_ml,extraction_time_min,agitation_frequency_hz,agitation_speed_rpm,centrifugation_n,centrifugation_speed_rpm,centrifugation_time_min,centrifugation2_time_min,supernatant_volume_ml
+E1,4 (MeOH/H2O),3,1,1,1,2,2,1,1,4,5,30,1,3,30,,2,14000,5,3,0.7
+E2,4 (MeOH/H2O),3,1,1,1,1,1,1,1,4,,,1,30,,200,1,14000,5,,
+E3,9 (MeOH/H2O 70),3,1,1,1,10,2,1,1,4,5,30,1,3,30,,2,14000,5,3,0.7
+E4,12 (EtOH-H2O 75:25),3,1,1,1,11,2,1,1,4,5,30,1,3,30,,2,14000,5,3,0.7
+E5,13 (ACN/H2O 50/50 dillution),3,1,1,1,12,2,1,1,4,5,30,1,3,30,,2,14000,5,3,0.7

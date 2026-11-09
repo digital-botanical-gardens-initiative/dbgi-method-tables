@@ -1,0 +1,5 @@
+id,field_extract_postprocessing,description,details
+1,none,Injected as is (after centrifugation).,
+2,"centrifuged, supernatant taken","Spun down, supernatant transferred.",
+3,evaporated and redissolved,Dried down and taken up in a standard solvent/volume.,Parameters on the Dried extract page.
+4,tissue re-extracted,Tissue is extracted again in the lab and extracts pooled.,

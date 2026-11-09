@@ -1,0 +1,12 @@
+id,observation_subject,description,n_samples (Directus)
+1,Leaf,,5910
+2,Flower,,651
+3,Stems,,533
+4,Root,,432
+5,Whole organism,,163
+6,Fruit,,154
+7,Seed,,67
+8,Bark,,63
+9,Bud,,52
+10,Aboveground,,41
+11,other,,3

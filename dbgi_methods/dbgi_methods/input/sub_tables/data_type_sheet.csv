@@ -1,0 +1,3 @@
+id,data_type,description,details
+1,Profile,Full peak shape.,MS:1000128
+2,Centroid,One point per peak.,MS:1000127

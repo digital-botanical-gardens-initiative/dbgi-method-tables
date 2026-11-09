@@ -1,0 +1,5 @@
+id,fragmentation_method,description,details
+1,HCD,Higher-energy collisional dissociation.,MS:1000422
+2,CID,Collision-induced dissociation.,MS:1000133
+3,EAD,Electron-activated dissociation (Sciex Zeno).,
+4,ETD,Electron-transfer dissociation.,MS:1000598

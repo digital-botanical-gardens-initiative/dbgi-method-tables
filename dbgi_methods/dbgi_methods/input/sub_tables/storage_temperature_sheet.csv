@@ -1,0 +1,6 @@
+id,storage_temperature,description,details
+1,ambient,Room temperature.,Dried material only.
+2,4C,"Fridge, 4 C.",Short term.
+3,-20C,"Freezer, -20 C.",Medium term.
+4,-80C,"Deep freezer, -80 C.",DBGI standard for samples and extracts.
+5,liquid_N2,"Liquid nitrogen tank, -196 C.",Long-term biobanking.

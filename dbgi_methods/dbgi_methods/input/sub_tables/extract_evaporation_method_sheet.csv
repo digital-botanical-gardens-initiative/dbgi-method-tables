@@ -1,0 +1,4 @@
+id,extract_evaporation_method,description,details
+1,SpeedVac (vacuum centrifuge),Centrifugal evaporator under vacuum.,Record temperature if heated.
+2,nitrogen stream,Blow-down under N2.,
+3,freeze-drying,Extract frozen and lyophilised.,

@@ -1,0 +1,14 @@
+id,column_model,vendor,stationary_phase,particle_type,description,details
+1,Acquity UPLC HSS T3,Waters,C18,fully porous,"Waters, high-strength silica C18, polar-retentive.",Good retention of polar compounds.
+2,Acquity Premier HSS T3,Waters,C18,fully porous,HSS T3 with MaxPeak low-adsorption hardware.,
+3,Acquity UPLC BEH C18,Waters,C18,fully porous,"Waters, ethylene-bridged hybrid C18.",pH 1-12.
+4,Acquity UPLC CSH C18,Waters,,,"Waters, charged surface hybrid C18.",Better peak shape for bases.
+5,Acquity UPLC BEH Amide,Waters,,,Waters HILIC amide.,Polar metabolites.
+6,Kinetex C18,Phenomenex,C18,core-shell,Phenomenex core-shell C18.,High efficiency at moderate pressure.
+7,Kinetex Biphenyl,Phenomenex,,,Phenomenex core-shell biphenyl.,"Aromatics, isomers."
+8,Kinetex Polar C18,Phenomenex,,,Phenomenex polar-embedded C18.,
+9,Luna Omega Polar C18,Phenomenex,,,Phenomenex fully porous polar C18.,
+10,Hypersil GOLD C18,Thermo Scientific,,,Thermo C18.,
+11,Accucore C18,Thermo Scientific,,,Thermo core-shell C18.,
+12,Zorbax Eclipse Plus C18,Agilent,,,Agilent C18.,
+13,InfinityLab Poroshell 120 EC-C18,Agilent,,,Agilent core-shell C18.,

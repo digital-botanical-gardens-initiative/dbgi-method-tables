@@ -1,0 +1,3 @@
+id,dd_mode,description,details
+1,top N,N most intense precursors after each MS1.,Record N.
+2,cycle time,As many as fit in a fixed cycle.,Record cycle time (s).

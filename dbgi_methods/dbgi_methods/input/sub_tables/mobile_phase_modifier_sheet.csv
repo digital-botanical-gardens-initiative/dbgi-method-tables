@@ -1,0 +1,7 @@
+id,mobile_phase_modifier,description,details
+1,formic acid,"Acidifier, favours [M+H]+.",0.05-0.1% v/v.
+2,acetic acid,Weaker acid.,
+3,ammonium formate,Buffer.,mM.
+4,ammonium acetate,Buffer.,mM.
+5,ammonium hydroxide,Basic modifier.,
+6,none,No additive.,

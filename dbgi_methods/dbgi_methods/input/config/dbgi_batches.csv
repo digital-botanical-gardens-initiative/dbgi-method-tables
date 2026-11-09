@@ -1,0 +1,7 @@
+batch_id,garden,identification_method_id,sampling_method_id,drying_method_id,extraction_method_id,lcms_method_id,processing_method_id
+JBN_synapt_2025,JBN,I1,S1,D1,E1,L1,P1
+JBC_zenotof_2026,JBC,I1,S2,D1,E3,L2,P2
+JBP_orbitrap_2026,JBP,I1,S3,D2,E4,L3,P2
+JBK_2025,JBK,I1,S3,D1,E1,L4,P2
+JBUF_qexactive_2024,JBUF,I1,S1,D1,E2,L5,P2
+JBUF_hfx,JBUF,I1,S1,D1,E2,L6,P2

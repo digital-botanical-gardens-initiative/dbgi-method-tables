@@ -1,0 +1,3 @@
+id,sonication_type,description,details
+1,ultrasonic bath,Tubes placed in a bath.,Power spread over the bath; position matters.
+2,probe sonicator,Probe dipped in each tube.,Much more energy; risk of heating and cross-contamination.

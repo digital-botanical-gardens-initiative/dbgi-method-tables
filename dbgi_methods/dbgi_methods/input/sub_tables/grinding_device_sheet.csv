@@ -1,0 +1,7 @@
+id,grinding_device,description,details
+1,Retsch_MM400,Retsch MM400 mixer mill.,Up to 30 Hz; 2 x 10 tubes with adapters.
+2,Qiagen_TissueLyser_II,Qiagen TissueLyser II bead mill.,Up to 30 Hz; 2 x 24 or 2 x 96 formats.
+3,Precellys,Bertin Precellys homogeniser.,Rotational shaking; speed in rpm.
+4,Geno/Grinder,SPEX Geno/Grinder plate grinder.,96-well format.
+5,mortar_pestle,Manual grinding in a mortar.,Usually under liquid N2.
+6,none,Not ground.,Tissue extracted whole.

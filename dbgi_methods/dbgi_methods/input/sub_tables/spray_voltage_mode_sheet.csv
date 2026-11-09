@@ -1,0 +1,3 @@
+id,spray_voltage_mode,description,details
+1,static,Constant voltage.,
+2,time dependent,Voltage program over the run.,Prague: 0 V until 0.2 min.

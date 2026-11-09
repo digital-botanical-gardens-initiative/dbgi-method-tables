@@ -1,0 +1,4 @@
+id,uv_detection,description,details
+1,none,No UV detector.,
+2,PDA / DAD,"Photodiode / diode array, full spectrum.",Record range and rate.
+3,single-wavelength UV,Fixed wavelength.,

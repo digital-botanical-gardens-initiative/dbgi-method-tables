@@ -1,0 +1,5 @@
+id,oven_type,description,details
+1,forced-air (ventilated) oven,"Oven with fan, even temperature.","Faster, more homogeneous drying."
+2,static oven,Oven without fan.,Temperature gradients inside.
+3,plant dryer / dehydrator,Herbarium plant dryer or food dehydrator.,Often used in the field.
+4,vacuum oven,Drying under reduced pressure.,Lower temperature needed.

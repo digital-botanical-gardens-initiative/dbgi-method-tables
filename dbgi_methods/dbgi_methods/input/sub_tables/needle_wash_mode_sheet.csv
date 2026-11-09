@@ -1,0 +1,5 @@
+id,needle_wash_mode,description,details
+1,before draw,Washed before drawing the sample.,
+2,after draw,Washed after drawing.,
+3,before and after draw,Both.,
+4,off,No wash.,

@@ -1,0 +1,7 @@
+id,acquisition_mode,description,details
+1,DDA,Data-dependent: precursors selected from the MS1 scan.,DBGI standard.
+2,DIA,Data-independent: fixed or variable isolation windows.,
+3,MSE,Waters alternating low/high energy.,
+4,SWATH,Sciex DIA windows.,
+5,full scan only,MS1 only.,
+6,targeted (PRM),Inclusion list only.,

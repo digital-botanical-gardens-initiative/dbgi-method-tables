@@ -1,0 +1,5 @@
+id,shaker_type,description,details
+1,orbital shaker,Platform moving in a circle.,Record orbit diameter if known.
+2,thermoshaker (e.g. Eppendorf ThermoMixer),Heated/cooled block shaker for tubes.,
+3,rotator / overhead,Tubes turned end over end.,
+4,reciprocal shaker,Back-and-forth movement.,

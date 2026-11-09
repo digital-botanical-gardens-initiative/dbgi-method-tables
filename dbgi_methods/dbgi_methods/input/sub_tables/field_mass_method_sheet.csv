@@ -1,0 +1,5 @@
+id,field_mass_method,description,details
+1,field balance,Weighed fresh on a portable balance.,Precision in Field extraction > Balance.
+2,fixed area (discs),Standardised by number and size of discs.,
+3,estimated,"Approximate amount, not weighed.","Normalise later, e.g. on TIC."
+4,weighed after (dry residue),"Tissue recovered, dried and weighed after extraction.",

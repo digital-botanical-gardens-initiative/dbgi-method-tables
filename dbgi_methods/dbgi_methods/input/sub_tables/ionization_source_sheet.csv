@@ -1,0 +1,9 @@
+id,ionization_source,description,details
+1,ESI,Electrospray ionisation.,MS:1000073
+2,H-ESI,"Heated ESI, Thermo OptaMax NG probe.",Exploris / ID-X.
+3,HESI-II,"Heated ESI, Thermo HESI-II probe.",Q Exactive.
+4,ZSpray ESI,Waters ZSpray source.,
+5,Turbo V / OptiFlow ESI,Sciex ESI source.,
+6,APCI,Atmospheric pressure chemical ionisation.,MS:1000070
+7,APPI,Atmospheric pressure photoionisation.,MS:1000382
+8,nanoESI,Nano-electrospray.,

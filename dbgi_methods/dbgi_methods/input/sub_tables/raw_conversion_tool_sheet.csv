@@ -1,0 +1,5 @@
+id,raw_conversion_tool,description,details
+1,MSConvert (ProteoWizard),,Record version and peak-picking.
+2,ThermoRawFileParser,Thermo .raw only.,
+3,DataConvert (Waters),Waters .raw.,
+4,vendor export,,

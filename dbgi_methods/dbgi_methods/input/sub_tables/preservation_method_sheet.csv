@@ -1,0 +1,10 @@
+id,preservation_method,description,details
+1,liquid_N2,Flash-frozen in liquid nitrogen (-196 C) immediately after cutting.,Best preservation of labile metabolites. Needs a dewar; keep frozen until extraction.
+2,dry_ice,Frozen on dry ice (-78 C).,Easier logistics than liquid N2; slower freezing.
+3,silica_gel,Dried with silica gel at ambient temperature.,"Cheap, no cold chain. Drying takes 24-72 h; some volatile or labile compounds lost."
+4,oven_drying,Dried in an oven.,"Heat may degrade compounds. Parameters on the Oven drying page (type, temperature, duration)."
+5,air_drying,Dried at ambient temperature in the shade.,"Slow; enzymatic changes possible. Parameters on the Air drying page (place, temperature, duration)."
+6,field_extraction,Tissue placed directly into extraction solvent in the field.,Stops metabolism instantly. Parameters on the Field extraction page.
+7,ethanol_96,Stored in 96% ethanol.,"Compounds leach into the ethanol. Parameters on the Ethanol page (concentration, volume, storage, use of the liquid)."
+8,RNAlater,Stored in RNAlater solution.,For combined RNA work; may affect metabolite profiles. Parameters on the RNAlater page.
+9,none,"Fresh material, no preservation.",Only if extracted within minutes.

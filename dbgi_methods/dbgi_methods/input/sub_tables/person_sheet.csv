@@ -1,0 +1,55 @@
+id,person,full_name,orcid,role,qfield_projects,n_samples (Directus)
+1,ML,Mazzarine Laboureau,0009-0006-7011-4195,Collector and extraction operator.,"artemisia_absinthium, bioblitz_vinesch, champex_gradient, chemical_ecology, droguier_jbn, jbc, jbn, jbn-new, jbp-new, kew-botanical-gardens",2749
+2,KK,Kateřina Kučerová,0009-0006-5056-5861,"Extraction operator and LC-MS contact (Prague, Kew).","jbp, jbp-new, kew-botanical-gardens",722
+3,DR,Davide Rovelli,0009-0007-5818-8981,"Collector, Kew 2025.",kew-botanical-gardens,184
+4,EL,Émilie Lab,,"Collector, Champex 2025.","champex_gradient, jbc",830
+5,EB,Edouard Brülhart,0000-0003-3950-4065,"Collector, Fribourg.","bioblitz_vinesch, emi, jbc, jbn, jbuf",931
+6,GG,Gaëtan Glauser,,LC-MS contact for JBN and JBC (not a collector in Directus).,,
+7,PMA,Pierre-Marie Allard,0000-0003-3389-2191,LC-MS contact for JBUF (Fribourg).,"bioblitz_vinesch, champex_gradient, jbc, jbuf, kew-botanical-gardens, macedonia",77
+8,ED,Emmanuel Defossez,0000-0002-3279-9190,Collector.,"artemisia_absinthium, bioblitz_vinesch, chemical_ecology, droguier_jbn, jbn, jbn-new, jbuf, macedonia",775
+9,HC,Héloïse Coen,0009-0009-8832-7457,Collector.,"bioblitz_vinesch, champex_gradient, jbuf",736
+10,VB,Valentin Bussat,,Collector.,fung,499
+11,LS,Lëndita Schwegler,,Collector.,jbn,326
+12,SR,Simon Rérat,0009-0005-5891-8580,Collector.,jbuf,308
+13,FB,Federico Brigante,0000-0002-7553-8302,Collector.,"jbp, jbp-new",299
+14,LJ,Lysandre Journiac,0009-0008-4179-5600,Collector.,medicin_alps,267
+15,LC,Loic Chalmandrier,0000-0002-2631-0432,Collector.,medicin_alps,220
+16,AM,Anna Maliukova,0009-0003-1885-715X,Collector.,"jbp, jbp-new, sandbox",186
+17,AR,Alicia Requena,,Collector.,jbn-new,110
+18,JD,Jade Dandois,0009-0007-5787-4373,Collector.,jbuf,94
+19,TDL,Tsering Dolkar Lama,,Collector.,manaslu,68
+20,TI,Tomáš Iliaš,0009-0008-1002-5769,Collector.,jbp-new,50
+21,ALC,Audrey Le Cabec,,Collector.,"jbn, jbuf",38
+22,MW,Maëlle Wannier,0009-0008-3757-9999,Collector.,bioblitz_vinesch,30
+23,DA,Donat Agosti,0000-0001-9286-1200,Collector.,bioblitz_vinesch,21
+24,AJ,Alex Jachovski,,Collector.,macedonia,19
+25,DT,Disha Tandon,0009-0005-5515-1230,Collector.,bioblitz_vinesch,19
+26,CD,Clement Duckert,,Collector.,jbn,18
+27,LL,Lise Lebrun,,Collector.,bioblitz_vinesch,18
+28,MASV,Marco Andreas Stanley Visani,0000-0002-3211-9423,Collector.,bioblitz_vinesch,17
+29,OG,Olga Gigopulu,0000-0002-5557-8286,Collector.,macedonia,15
+30,JS,James Smith,,Collector.,sbl_20004,15
+31,UTL,Urgyen Tsewang Lama,,Collector.,manaslu,15
+32,ACS,Ana Claudia Sima,0000-0003-3213-4495,Collector.,bioblitz_vinesch,14
+33,FT,Filip Todorov,0009-0006-0817-4883,Collector.,macedonia,14
+34,KN,Kamenka Nikolova,,Collector.,macedonia,11
+35,VP,Vangeli Petrushu,,Collector.,macedonia,10
+36,CB,Chloé Blanc,,Collector.,sbl_20004,10
+37,DAK,Darija Aksik,,Collector.,macedonia,9
+38,GS,Gala Stojanovska,,Collector.,macedonia,9
+39,ST,Sujanthan Thurka,,Collector.,bg-unifr,6
+40,SP,Sara Petrovska,,Collector.,macedonia,6
+41,MP,Magdalina Petrushevska,,Collector.,macedonia,6
+42,MS,Mila Stojanovska,,Collector.,macedonia,6
+43,DSA,David Stanley Adrien,,Collector.,bg-unifr,6
+44,AK,Alžběta Kadlecová,0009-0002-4729-6964,Collector.,jbp,5
+45,JA,Jovana Angelova,,Collector.,macedonia,5
+46,PS,Pellegrini Simone,,Collector.,bg-unifr,5
+47,STG,Stephanie Tandem Guetchueng,,Collector.,jbuf,5
+48,PL,Philippoz Laurent,,Collector.,bg-unifr,5
+49,TD,Tito Damiani,0000-0002-4616-900X,Collector.,"jbp-new, kew-botanical-gardens",5
+50,AS,Alexandra Slotte,,Collector.,jbc,4
+51,FC,Fellay Cécilie,,Collector.,bg-unifr,4
+52,AG,Anja Graoroska,,Collector.,macedonia,3
+53,CV,Colin Volet,,Collector.,manaslu,1
+54,TB,Tijana Banjanac,0000-0001-9023-9135,Collector.,macedonia,1

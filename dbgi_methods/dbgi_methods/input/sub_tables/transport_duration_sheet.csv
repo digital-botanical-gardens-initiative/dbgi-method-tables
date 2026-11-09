@@ -1,0 +1,6 @@
+id,transport_duration,description,details
+1,<8h,Less than 8 hours.,Same-day transport.
+2,<24h,Less than 24 hours.,
+3,<48h,Less than 48 hours.,
+4,<72h,Less than 72 hours.,Typical for silica gel shipments.
+5,>72h,More than 72 hours.,Actual duration in Transport & storage > Transport.

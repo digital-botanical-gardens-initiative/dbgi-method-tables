@@ -1,0 +1,7 @@
+id,extract_storage_temperature,description,details
+1,injected same day (autosampler only),"Extracts go straight into the cooled autosampler, no separate storage.",Record autosampler temperature in the LC sheet.
+2,4C,"Fridge, about 4 C.",Short term only (days).
+3,-20C,"Freezer, -20 C.",
+4,-80C,"Deep freezer, -80 C.",DBGI standard for extracts.
+5,"dried extract, -20C","Solvent evaporated, dry extract stored at -20 C.",Parameters on the Dried extract page.
+6,"dried extract, -80C","Solvent evaporated, dry extract stored at -80 C.",Parameters on the Dried extract page.

@@ -1,0 +1,4 @@
+id,gradient_curve,description,details
+1,linear (5 / 6),"Linear (Thermo curve 5, Waters curve 6).",
+2,convex,Fast then slow.,
+3,concave,Slow then fast.,

@@ -1,0 +1,5 @@
+id,injection_mode,description,details
+1,full loop,Loop completely filled.,Most precise.
+2,partial loop,Loop partly filled.,
+3,partial loop with needle overfill,Waters PLNO.,
+4,flow-through needle,"Needle in the flow path (Thermo split-loop, Waters FTN).",

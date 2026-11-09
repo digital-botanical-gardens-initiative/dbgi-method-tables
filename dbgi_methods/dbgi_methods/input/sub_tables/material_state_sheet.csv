@@ -1,0 +1,4 @@
+id,material_state,description,details
+1,frozen fresh,"Frozen tissue, never dried.",Weigh frozen; report fresh weight.
+2,dried,"Silica-, air- or oven-dried tissue.",Report dry weight.
+3,freeze-dried,Lyophilised tissue.,Report dry weight.

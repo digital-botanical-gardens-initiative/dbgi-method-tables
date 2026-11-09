@@ -1,0 +1,13 @@
+id,extraction_solvent,description,details
+1,MeOH:H2O 80:20,Methanol / water 80:20 (v/v).,DBGI standard for broad polarity range.
+2,MeOH:H2O:FA 80:19.9:0.1,Methanol / water / formic acid 80:19.9:0.1 (v/v/v).,Acidified; improves alkaloid and phenolic recovery.
+3,MeOH:H2O 50:50,Methanol / water 50:50.,More polar compounds.
+4,MeOH 100,Pure methanol.,
+5,EtOH:H2O 70:30,Ethanol / water 70:30.,Less toxic alternative.
+6,ACN:H2O 80:20,Acetonitrile / water 80:20.,
+7,MeOH:ACN:H2O 40:40:20,Methanol / acetonitrile / water.,Common for polar metabolomics.
+8,iPrOH:H2O 70:30,Isopropanol / water.,Lipids.
+9,EtOAc,Ethyl acetate.,Apolar compounds.
+10,MeOH:H2O 70:30,Methanol / water 70:30.,From Directus (extraction method 9 'MeOH/H2O 70').
+11,EtOH:H2O 75:25,Ethanol / water 75:25.,From Directus (method 12).
+12,ACN:H2O 50:50,Acetonitrile / water 50:50.,"From Directus (method 13, ACN/H2O 50/50 dillution)."

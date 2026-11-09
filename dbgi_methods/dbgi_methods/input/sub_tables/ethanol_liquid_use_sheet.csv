@@ -1,0 +1,5 @@
+id,ethanol_liquid_use,description,details
+1,kept and extracted with the tissue,Ethanol and tissue processed together.,Recovers leached compounds.
+2,analysed separately,Ethanol injected or extracted as its own sample.,Record the link between the two samples.
+3,"evaporated, residue pooled with tissue",Ethanol dried down and residue added back.,
+4,discarded,Only the tissue is extracted.,Leached compounds are lost.

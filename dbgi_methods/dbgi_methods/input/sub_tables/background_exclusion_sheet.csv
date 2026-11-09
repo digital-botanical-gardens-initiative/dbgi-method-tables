@@ -1,0 +1,6 @@
+id,background_exclusion,description,details
+1,none,,
+2,dynamic exclusion,Precursors excluded for a few seconds after fragmentation.,"Prague, Fribourg."
+3,static exclusion list,List of blank ions never fragmented.,Neuchatel: 200 most intense blank ions.
+4,dynamic exclusion + static list,Both.,Kew: ~210 background ions.
+5,dynamic background subtraction,Sciex: ions constant over time ignored.,JBC.

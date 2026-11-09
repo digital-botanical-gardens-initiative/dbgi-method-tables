@@ -1,0 +1,6 @@
+id,extraction_agitation,description,details
+1,shaking,Orbital or platform shaker.,"Parameters on the Shaking page (speed, shaker); time and temperature on the Agitation page."
+2,bead_homogenisation,Bead mill run again after adding solvent.,"Parameters on the Bead homogenisation page (frequency, cycles, device); time on the Agitation page."
+3,sonication,Ultrasonic bath.,"Parameters on the Sonication page (type, frequency, power, cooling); time and temperature on the Agitation page."
+4,vortex,Vortex mixer.,Speed on the Vortex page; time on the Agitation page.
+5,none,Maceration without agitation.,

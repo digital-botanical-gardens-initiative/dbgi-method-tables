@@ -1,0 +1,3 @@
+id,isolation_mode,description,details
+1,quadrupole,,Standard.
+2,ion trap,,Tribrid only.

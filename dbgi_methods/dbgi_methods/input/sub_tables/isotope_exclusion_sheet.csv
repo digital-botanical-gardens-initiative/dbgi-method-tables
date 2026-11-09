@@ -1,0 +1,4 @@
+id,isotope_exclusion,description,details
+1,assigned,Exclude isotopes with an assigned charge.,
+2,assigned and unassigned,Exclude all detected isotopes.,
+3,off,,

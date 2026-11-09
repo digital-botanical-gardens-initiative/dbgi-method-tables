@@ -1,0 +1,5 @@
+id,ce_mode,description,details
+1,fixed,One energy.,
+2,stepped,"Several energies, spectra summed.",Fribourg 15/30/45.
+3,ramped,Energy ramped with m/z.,Neuchatel.
+4,dynamic,"Energy computed from m/z (slope, intercept).",Sciex.

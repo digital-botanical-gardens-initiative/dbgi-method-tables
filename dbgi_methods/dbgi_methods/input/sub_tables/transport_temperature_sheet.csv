@@ -1,0 +1,6 @@
+id,transport_temperature,description,details
+1,ambient,No temperature control.,"Only for dried material (silica gel, air or oven drying)."
+2,cooled_4C,"Cool box with ice packs, about 4 C.",Short transport of fresh material.
+3,dry_ice,"On dry ice, about -78 C.",Frozen samples; refill dry ice for long trips.
+4,liquid_N2,"In a liquid nitrogen dewar, -196 C.",Dry shipper for long transport.
+5,frozen_-20C,"Portable freezer, -20 C.",

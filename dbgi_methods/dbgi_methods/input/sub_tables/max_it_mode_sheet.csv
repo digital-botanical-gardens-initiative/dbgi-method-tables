@@ -1,0 +1,4 @@
+id,max_it_mode,description,details
+1,Auto,Set from resolution.,
+2,Custom,User value in ms.,
+3,Dynamic,Adjusted to available time.,

@@ -1,0 +1,15 @@
+id,instrument_model,vendor,mass_analyzer,description,details
+1,Orbitrap ID-X,Thermo Scientific,Orbitrap (Tribrid),"Thermo Tribrid (quadrupole, Orbitrap, ion trap).",Prague.
+2,Orbitrap Fusion Lumos,Thermo Scientific,,Thermo Tribrid.,
+3,Orbitrap Exploris 120,Thermo Scientific,Orbitrap,Thermo Q-Orbitrap.,Kew.
+4,Orbitrap Exploris 240,Thermo Scientific,,Thermo Q-Orbitrap.,
+5,Q Exactive Plus,Thermo Scientific,Orbitrap,Thermo Q-Orbitrap.,Fribourg.
+6,Q Exactive HF-X,Thermo Scientific,Orbitrap,"Thermo Q-Orbitrap, high field.",Fribourg.
+7,Orbitrap Astral,Thermo Scientific,,Thermo Q-Orbitrap-Astral.,
+8,Synapt XS,Waters,QTOF,Waters QTOF with ion mobility.,Neuchatel.
+9,Xevo G2-XS QTOF,Waters,,Waters QTOF.,
+10,ZenoTOF 7600,Sciex,,Sciex QTOF with Zeno trap.,
+11,ZenoTOF 8600,Sciex,QTOF,Sciex QTOF with Zeno trap.,Neuchatel.
+12,TripleTOF 6600+,Sciex,,Sciex QTOF.,
+13,6546 LC/Q-TOF,Agilent,,Agilent QTOF.,
+14,timsTOF Pro 2,Bruker,,Bruker QTOF with TIMS.,
