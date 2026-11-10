@@ -1,0 +1,498 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DBGI Field and Lab Apps</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Roboto+Mono&display=swap">
+<style>
+:root{--green:#3E503C;--sage:#7F886A;--cream:#F3ECDB;--orange:#FF6F3D;--ink:#1F2A1E;--mute:#566052;--line:#E4DFD0;--bg:#F7F5EE;--paper:#fff;--warn:#9A3412;--req:#C9461F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#F7F5EE}}
+:root[data-theme="dark"]{--bg:#F7F5EE}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Fira Sans',system-ui,sans-serif}
+.top{display:flex;align-items:center;gap:1.5rem;padding:1rem 1rem;max-width:72rem;margin:0 auto;flex-wrap:wrap}
+.top h1{font-size:1.15rem;font-weight:500;color:var(--green);margin:0;flex-grow:1}
+.sw{display:flex;border:1px solid var(--green)}
+.sw button{border:0;background:#fff;color:var(--green);font:inherit;padding:.6rem 1.1rem;cursor:pointer;min-height:44px}
+.sw button.on{background:var(--green);color:#fff}
+.wrap{display:flex;gap:3rem;justify-content:center;align-items:flex-start;padding:1rem 1rem 3rem;max-width:72rem;margin:0 auto;flex-wrap:wrap}
+.phone{width:390px;height:844px;background:#fff;border:10px solid #1F2A1E;border-radius:2.2rem;overflow:hidden;position:relative;display:flex;flex-direction:column;flex-shrink:0;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.side{max-width:24rem;font-size:.95rem;line-height:1.55;color:var(--mute)}
+.side h2{color:var(--green);font-weight:500;font-size:1.1rem;margin:0 0 .5rem}
+.side ul{padding-left:1.1rem}
+@media (max-width:30rem){.phone{width:100%;height:calc(100vh - 5rem);border:0;border-radius:0;box-shadow:none}.wrap{padding:0}.side{padding:0 1rem}}
+/* app */
+.bar{background:var(--green);color:#fff;padding:.85rem 1rem;display:flex;align-items:center;gap:.75rem;min-height:56px;flex-shrink:0}
+.bar b{font-size:1.1rem;font-weight:500;flex-grow:1}
+.bar small{opacity:.85;font-size:.8rem}
+.ib{background:none;border:0;color:inherit;font-size:1.4rem;min-width:44px;min-height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.tabs{display:flex;background:var(--green);flex-shrink:0}
+.tabs button{flex:1;background:none;border:0;color:#fff;opacity:.7;font:inherit;font-size:.85rem;padding:.75rem 0;cursor:pointer;border-bottom:3px solid transparent}
+.tabs button.on{opacity:1;border-bottom-color:var(--orange)}
+.tabs .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:4px;vertical-align:middle}
+.body{flex-grow:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:1rem}
+.foot{padding:.75rem 1rem;border-top:1px solid var(--line);display:flex;gap:.6rem;flex-shrink:0;align-items:center}
+.l{font-size:.8rem;color:var(--mute);margin:0 0 .35rem;display:block}
+.r{color:var(--req)}
+.a{font-size:.68rem;color:var(--green);background:var(--cream);padding:1px 6px;margin-left:4px;white-space:nowrap}
+.i{border:1px solid #C9C3AE;padding:.65rem .75rem;font:inherit;font-size:1rem;min-height:44px;background:#fff;width:100%;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.c{border:1px solid #C9C3AE;background:#fff;padding:.55rem .75rem;font:inherit;font-size:.88rem;color:var(--ink);min-height:44px;cursor:pointer}
+.c.on{background:var(--green);border-color:var(--green);color:#fff}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.75rem}.g2 .i{min-width:0}
+.btn{border:0;background:var(--green);color:#fff;font:inherit;font-size:1rem;min-height:50px;cursor:pointer;flex:1;padding:0 1rem}
+.btn.hot{background:var(--orange);color:var(--ink);font-weight:500}
+.btn.sec{background:#fff;border:1px solid var(--green);color:var(--green)}
+.btn:disabled{opacity:.45;cursor:default}
+.box{background:var(--bg);padding:.75rem;font-size:.82rem;color:var(--mute);line-height:1.6}
+.box b{color:var(--ink);font-weight:500}
+.mono{font-family:'Fira Mono',monospace}
+.lead{margin:0;font-size:.88rem;color:var(--mute);line-height:1.45}
+.h{font-size:.95rem;font-weight:500;margin:.25rem 0 0}
+.row{display:flex;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.85rem}
+.warn{color:var(--warn)}
+.ok{color:var(--green)}
+.toast{position:absolute;left:1rem;right:1rem;bottom:5.5rem;background:var(--ink);color:#fff;padding:.75rem 1rem;font-size:.88rem;z-index:5}
+/* map */
+.map{position:relative;flex-grow:1;overflow:hidden;background:#EEF0E6}
+.map .ortho{position:absolute;left:-20%;top:28%;width:140%;height:52%;background:linear-gradient(135deg,#9AAE7E,#7E9467 40%,#B9B39A 60%,#8DA273);transform:rotate(-28deg);opacity:.85}
+.pt{position:absolute;width:16px;height:16px;border-radius:50%;border:1.5px solid #fff;background:var(--orange);transform:translate(-50%,-50%)}
+.pt.s{background:var(--green)}
+.lb{position:absolute;font-size:.8rem;color:var(--ink);background:rgba(255,255,255,.75);padding:0 3px;transform:translate(10px,-50%);white-space:nowrap}
+.cross{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px 0 0 -28px;border:2px solid var(--ink);border-radius:50%;pointer-events:none}
+.cross:before,.cross:after{content:'';position:absolute;background:var(--ink)}
+.cross:before{left:50%;top:12px;bottom:12px;width:2px;margin-left:-1px}.cross:after{top:50%;left:12px;right:12px;height:2px;margin-top:-1px}
+.rb{position:absolute;width:52px;height:52px;border-radius:50%;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sess{position:absolute;left:76px;right:12px;top:12px;background:#fff;padding:.5rem .75rem;box-shadow:0 1px 4px rgba(0,0,0,.2);font-size:.78rem;color:var(--mute);border:0;text-align:left;font-family:inherit;cursor:pointer}
+.sess b{display:block;color:var(--ink);font-size:.92rem;font-weight:500}
+/* photos */
+.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}
+.ph button{aspect-ratio:3/4;border:0;background:var(--cream);font:inherit;font-size:.72rem;color:var(--mute);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px}
+.ph button b{font-size:.82rem;color:var(--ink);font-weight:500}
+.ph button.ok{background:var(--green);color:#E4E9DF}.ph button.ok b{color:#fff}
+/* lab */
+.mod{display:flex;align-items:center;gap:.9rem;padding:.85rem 1rem;border:0;border-bottom:1px solid var(--line);background:#fff;font:inherit;color:var(--ink);text-align:left;cursor:pointer;width:100%;min-height:60px}
+.n{width:32px;height:32px;border-radius:50%;background:var(--cream);color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0;font-size:.85rem}
+.n.d{background:var(--green);color:#fff}
+.n.w{background:#fff;border:2px solid var(--orange);color:var(--ink)}
+.q{text-align:right;font-size:.75rem;color:var(--mute)}.q b{display:block;font-size:1.1rem;font-weight:400;color:var(--green)}
+.scale{border:2px solid var(--green);padding:1.2rem 1rem;text-align:center}
+.scale .v{font-size:3.6rem;font-weight:300;color:var(--green);line-height:1.1}
+.meter{height:10px;background:var(--line);position:relative;margin:.7rem 0 .3rem}
+.meter i{position:absolute;left:30%;width:40%;height:100%;background:#C5D1BC}
+.meter s{position:absolute;top:-4px;width:3px;height:18px;background:var(--green)}
+.prog{height:8px;background:var(--line)}.prog i{display:block;height:100%;background:var(--green)}
+.step{display:flex;align-items:center;gap:.75rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.step .d{font-size:.75rem;color:var(--mute)}
+.rmap{display:grid;gap:2px;font-size:.6rem}.rmap .axb{border:0;background:none;cursor:pointer;font:inherit;padding:0;text-decoration:underline dotted}.rmap .ax{display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:.65rem}.cell{aspect-ratio:1;border:0;background:var(--line);font:inherit;font-size:.55rem;padding:0;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Fira Mono',monospace}.cell.f{background:var(--green)}.cell.n{background:var(--orange);color:var(--ink);font-family:inherit}.cell.x{background:#fff;border:1px dashed #C9C3AE;color:#999}
+.mv{width:30px;height:30px;border:1px solid var(--line);background:#fff;font:inherit;color:var(--green);cursor:pointer;padding:0}.mv:disabled{opacity:.3}
+.scanbox{border:2px dashed var(--sage);background:#fff;color:var(--green);font:inherit;padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:.3rem;cursor:pointer;width:100%}.scanbox span{font-size:1.05rem;font-weight:500}.scanbox small{color:var(--mute);font-size:.72rem}
+input[type=range]{width:100%;accent-color:var(--green);height:32px}
+input[type=checkbox]{width:22px;height:22px;accent-color:var(--green)}
+
+/* look natif téléphone : police système, puces Material, champs arrondis */
+body,.phone,button,input,select,textarea{font-family:Roboto,'Segoe UI',system-ui,-apple-system,sans-serif}
+.mono{font-family:'Roboto Mono',ui-monospace,Menlo,monospace}
+.i{border-radius:8px;border-color:#B9B4A3}
+.c{border-radius:999px;padding:.45rem .95rem;min-height:36px;font-size:.85rem;border-color:#B9B4A3}
+.c.on{background:#DDE5D6;border-color:#DDE5D6;color:var(--ink);font-weight:500}
+.c.on:before{content:'✓ ';color:var(--green)}
+.chips{gap:.5rem}
+.btn{border-radius:999px;min-height:48px;font-weight:500}
+.box{border-radius:12px}
+.scanbox{border-radius:12px}
+.mv{border-radius:6px}
+.toast{border-radius:6px}
+
+/* labo : gros boutons pour les gants */
+.glove .btn{min-height:60px;font-size:1.05rem}
+.glove .c{min-height:48px;padding:.6rem 1.1rem;font-size:.95rem}
+.glove .i{min-height:52px;font-size:1.05rem}
+.glove .mv{width:44px;height:44px;font-size:1.1rem}
+.glove .mod{min-height:68px;font-size:1.02rem}
+.glove .scanbox{min-height:9rem}
+.glove .ib{min-width:52px;min-height:52px}
+.glove input[type=checkbox]{width:26px!important;height:26px!important}
+.glove .cell{font-size:.6rem}
+</style>
+</head>
+<body>
+<div class="top"><h1>DBGI apps · mockup</h1><div class="sw" role="tablist"><button id="sF" class="on">Field app</button><button id="sL">Lab app</button></div></div>
+<div class="wrap"><div class="phone" id="app"></div><div class="side" id="side"></div></div>
+<script>
+const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let APP='field';
+const now=()=>new Date().toTimeString().slice(0,5);
+/* ---------- état ---------- */
+const PRES=['Liquid N2','Dry ice','Silica gel','Oven','Air','Field extraction','Ethanol'];
+const PACK={'Liquid N2':'Aluminium foil','Dry ice':'Aluminium foil','Silica gel':'Tea bag / filter paper bag','Oven':'Paper envelope','Air':'Paper envelope','Field extraction':'Microtube 2 mL','Ethanol':'Microtube 2 mL'};
+const TAXA=[['Sempervivum montanum L.','Crassulaceae','CH-0-NEU-1998-0412'],['Saxifraga paniculata Mill.','Saxifragaceae','CH-0-NEU-2003-0107'],['Gentiana lutea L.','Gentianaceae','CH-0-NEU-1987-0233'],['Abies nordmanniana (Steven) Spach','Pinaceae','CH-0-NEU-1975-0021'],['Edelweiss, Leontopodium nivale','Asteraceae','CH-0-NEU-2011-0518']];
+const PHOTOS=[['general','surroundings'],['panel','plant pointed at'],['panel_label','tube code + label'],['detail','close-up'],['cut','sampled area'],['free','optional']];
+const F={prev:[{id:'batch_000027',d:'Yesterday',n:70,def:'2026-11-09T17:40',in:''},{id:'batch_000026',d:'Sun 8 Nov (silica)',n:80,def:'2026-11-10T09:00',in:''}],scr:'login',user:'',srv:'https://emi-collection.unifr.ch',proj:'',tab:0,toast:'',
+ s:{garden:'Neuchâtel (JBN)',collector:'Mazzarine Laboureau',pres:'Liquid N2',pack:'Aluminium foil',trans:'Liquid N2',dur:'< 8 h',ident:'Garden label',soil:'Rock garden',weather:'Sunny'},
+ done:[{id:'dbgi_007029',t:'Gentiana lutea L.',x:28,y:44,sent:1},{id:'dbgi_007030',t:'Saxifraga paniculata Mill.',x:36,y:57,sent:1},{id:'dbgi_007028',t:'Abies nordmanniana',x:62,y:40,sent:0}],cur:null};
+const newSample=()=>({id:'',taxon:'',fam:'',ipen:'',manual:false,organ:'Leaf',flower:'Flowering',wild:'No',herb:10,ceco:'',cenv:'',pres:F.s.pres,pack:F.s.pack,trans:F.s.trans,store:'-80 °C',cut:now(),frozen:'',photos:{},inat:true,soil:F.s.soil,weather:F.s.weather});
+let nextId=7031;
+const L={off:{on:false,q:0},rc:{sess:[{id:'batch_000027',g:'Neuchâtel (JBN)',d:'Mon 9 Nov',n:70,pres:'Liquid N2',last:'16:52',ld:'2026-11-09T16:52',def:'2026-11-09T17:40',in:''},{id:'batch_000026',g:'Neuchâtel (JBN)',d:'Sun 8 Nov',n:80,pres:'Silica gel',last:'15:10',ld:'2026-11-08T15:10',def:'2026-11-10T09:00',in:''},{id:'batch_000025',g:'Champex (JBC)',d:'Fri 6 Nov',n:41,pres:'Dry ice',last:'14:20',ld:'2026-11-06T14:20',def:'2026-11-06T18:45',in:'Fri 6 Nov 18:45',sto:'-80 °C freezer',dur:'4 h 25 min'}]},pmode:'fill',dr:{m:'Freeze-drying',dev:'Christ Alpha 2-4 LSCbasic',run:false,h:0,n:0,done:[]},gr:{dev:'Retsch MM400',min:'5',hz:'30',open:false},exs:{ag:'Bead homogenisation',agmin:'3',rpm:'14000',cmin:'5',fil:'None',sto:'-80 °C'},ms:{lc:'Vanquish Horizon',col:'Acquity HSS T3',pol:'Positive',meth:'DBGI_RP_pos_20min',al:'batch_000028'},scr:'login',user:'',srv:'https://emi-collection.unifr.ch',nb:{type:'extraction',short:'',desc:'',com:''},pr:{on:false,name:'',size:'12 × 25 mm (tube)',searching:false},batches:[['batch_000027','collection','JBN field day 9 Nov','70 samples, made by the field app'],['batch_000026','collection','JBN field day 8 Nov','80 samples, made by the field app'],['batch_000030','extraction','extraction batch ML1','field extraction batch liquid 80/20'],['batch_000029','dried_samples','JBN 2026 autumn','dried samples from the JBN autumn campaign'],['batch_000028','aliquots','aliquots JBN plate 1','']],prep:[],rt:[{n:'Cryobox 9 × 9 · 2 mL tubes',k:'Box',r:9,c:9,t:'2 mL tube',s:'ok'},{n:'Rack 4 × 6 · 50 mL Falcon',k:'Rack',r:4,c:6,t:'50 mL Falcon',s:'ok'},{n:'Rack 8 × 10 · 2 mL tubes',k:'Rack',r:8,c:10,t:'2 mL tube',s:'ok'},{n:'Plate 8 × 12 · deep well',k:'Plate',r:8,c:12,t:'deep well',s:'ok'},{n:'Bag · XL Ziploc',k:'Bag',r:0,c:0,t:'any',s:'ok'}],nrt:{k:'Box',r:'',c:'',t:'2 mL tube',man:'',ref:'',photo:false,why:''},rack:{label:''},cell:'',fix:false,mv:null,racks:{RACK_0041:{type:'Rack 8 × 10 · 2 mL tubes',rows:8,cols:10,off:0,tubes:Object.fromEntries(Array.from({length:12},(_,k)=>['ABCDEFGH'[k%8]+(Math.floor(k/8)+1),'dbgi_'+String(5100+k*7).padStart(6,'0')]))},RACK_0040:{type:'Cryobox 9 × 9 · 2 mL tubes',rows:9,cols:9,off:0,tubes:Object.fromEntries(Array.from({length:40},(_,k)=>['ABCDEFGHI'[k%9]+(Math.floor(k/9)+1),'dbgi_'+String(6200+k*3).padStart(6,'0')]))}},rkn:42,w:{on:true,min:'18',max:'22',id:'',val:'',sp:'',done:[['dbgi_007029',20.3],['dbgi_007030',19.6]]},ex:{solv:'MeOH:H2O:FA 80:19.9:0.1',vol:'1',done:[]},al:{vol:'100',dil:'No',fac:'10',list:[]},q:'',nx:7031};
+/* ---------- rendu ---------- */
+const chips=(k,opts,val,o='')=>`<div class="chips">${opts.map(v=>`<button class="c ${v===val?'on':''}" data-set="${k}" data-v="${esc(v)}" ${o}>${esc(v)}</button>`).join('')}</div>`;
+const sel=(k,opts,val,id)=>`<select class="i" id="${id||k}" data-in="${k}">${opts.map(v=>`<option ${v===val?'selected':''}>${esc(v)}</option>`).join('')}</select>`;
+function render(){$('#app').classList.toggle('glove',APP==='lab');APP==='field'?field():lab();side()}
+const SIDE={
+f_login:['Sign in','Same account as Directus. The Fribourg server is filled in; another team can change it.'],
+f_projects:['Projects','All your QField projects on the server. Opening one downloads it, so the app works without network in the garden.'],
+f_session:['Today’s session','Filled once per field day: garden, collector, preservation, packaging, transport, identification. Every sample of the day inherits it, so these method fields never have to be chased afterwards. The field printer is connected here.'],
+f_map:['Map','Like QField: crosshair, sample labels, tools on the left, green + to add a sample. The counter shows what is not sent yet.'],
+f_form0:['Plant','Scan the tube, type a few letters of the taxon: the garden list gives the name and the IPEN. GPS, time and collector are recorded for you. A dot on a tab means something required is missing.'],
+f_form1:['Site','Herbivory, soil, weather and comments. Soil and weather stay set for the next plant, like the pin in QField. Air temperature comes from a weather station.'],
+f_form2:['Preservation','Taken from the session; change it only for an odd sample. Cut time = when the “cut” photo is taken; freezing time = when the sample is saved and sent. The fields change with the method (silica, field extraction…).'],
+f_form3:['Photos','The six DBGI photos. They go to iNaturalist with the tag emi_external_id, so the portal links each sample to its observation. The panel_label photo is checked against the scan and the taxon.'],
+f_sync:['Send','Each field day becomes a collection batch automatically. The app asks when the box goes into the freezer, and asks again later for days still missing (silica, long trips): day and time, no rescanning.'],
+l_login:['Sign in','Directus account, Fribourg server by default.'],
+l_home:['Modules','One module per bench step, as in EMI. The wifi switch shows offline work: scans are kept on the phone and synced later. The printer status is always top right.'],
+l_printer:['Field printer','Connect once; every module prints its labels through it. The same printer works in the field app.'],
+l_batches:['Batches','Only extraction batches are made by hand, with a short description and a description as in Directus. Creating one prints the blank label for the vials, which can be reprinted. Collection, aliquots, project and ms batches are made automatically.'],
+l_reception:['Reception','One line per field day. Say when the box went into the freezer, day and time; the transport duration is computed from the field freezing times. Usually already answered in the field app.'],
+l_preparation:['Preparation','Drying: one entry per project, no tube tracking. Fill a rack: scan a rack label (new ones get a rack type), the app counts free places, fill A1, B1, C1… or tap where to start; tap a tube to rescan it. Move a tube: from one rack to another. Rack types are added through a curator.'],
+l_newrack:['New rack type','The name is built from the fields, a photo is required and look-alikes are flagged, so the same rack never gets two names. Usable at once, checked by a curator.'],
+l_curator:['Curator','Approve, merge into an existing type (racks are moved over) or refuse each proposal.'],
+l_weighing:['Weighing','Scan, type the weight, print, next tube. The weight range is optional and set per batch. Grinding settings sit here because the beads go in at weighing. Any weight can be corrected; the old value is kept.'],
+l_extraction:['Extraction','Pick the extraction batch, set the liquid and volume once (plus agitation, centrifugation, filtration, storage), then scan each tube and stick the new label.'],
+l_aliquoting:['Aliquoting','Upload the injection order (blk, qc, sample…) or build it by hand, and move lines up or down. Each scanned sample fills the next sample slot and prints its vial label. Validating the plate creates the aliquots batch and keeps the CSV in order.'],
+l_summary:['Batch check','The required method fields of a batch, filled or missing, and in which module. LC-MS settings come from the RAW / mzML files at deposit.'],
+l_search:['Search','Type or scan a sample: rack, position and the rack map with the tube highlighted.']};
+function side(){const k=APP==='field'?'f_'+(F.scr==='form'?'form'+F.tab:F.scr):'l_'+L.scr,s=SIDE[k]||[APP==='field'?'Field app':'Wet lab app',''];$('#side').innerHTML=`<p class="lead" style="font-size:.8rem;margin:0 0 .3rem">${APP==='field'?'Field app':'Wet lab app'}</p><h2>${s[0]}</h2><p>${s[1]}</p><p class="lead" style="font-size:.8rem">Mockup, nothing is saved.</p>`}
+/* ----- terrain ----- */
+function field(){const a=$('#app');const s=F.s,c=F.cur;let h='';
+if(F.scr==='login')h=`<div class="bar"><b>DBGI field</b></div><div class="body" style="justify-content:center;gap:1.1rem">
+<div style="text-align:center;margin-bottom:.5rem"><div style="font-size:1.5rem;color:var(--green);font-weight:500">Sign in</div></div>
+<div><label class="l" for="srv">Server</label><input class="i mono" style="font-size:.85rem" id="srv" data-in="srv" value="${esc(F.srv)}"></div>
+<div><label class="l" for="usr">E-mail</label><input class="i" id="usr" type="email" data-in="user" value="${esc(F.user)}" placeholder="firstname.lastname@unine.ch" autocomplete="username"></div>
+<div><label class="l" for="pw">Password</label><input class="i" id="pw" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+<button class="btn hot" style="flex:0 0 auto" data-act="login">Sign in</button>
+<p class="lead" style="font-size:.78rem;text-align:center">No account? Ask on dbgi.org.</p></div>`;
+if(F.scr==='projects'){const P=[['jbn-new','Neuchâtel (JBN)','2026 campaign',214,'#9AAE7E'],['jbn','Neuchâtel (JBN)','2023–2025',1630,'#B8A06A'],['jbp-new','Prague (JBP)','2026 campaign',318,'#8DA2A6'],['jbuf','Fribourg (JBUF)','2022–2025',2410,'#7E9467'],['jbc','Champex (JBC)','alpine garden',402,'#A7B48C'],['kew-botanical-gardens','London, Kew (JBK)','2025',96,'#9FB59A'],['artemisia_absinthium','Valais gradient','Artemisia absinthium',180,'#6E8A77']];
+h=`<div class="bar"><b>Projects</b><button class="ib" data-act="logout" aria-label="Sign out" style="font-size:.8rem;width:auto;padding:0 .5rem">Sign out</button></div>
+<div style="background:var(--bg);padding:.6rem 1rem;font-size:.8rem;color:var(--mute);border-bottom:1px solid var(--line)">${esc(F.user||'Signed in')} · <span class="mono">${esc(F.srv.replace('https://',''))}</span></div>
+<div class="body" style="gap:.6rem">${P.map(p=>`<button data-proj="${p[0]}" data-g="${p[1]}" style="border:1px solid var(--line);background:#fff;padding:0;text-align:left;font:inherit;cursor:pointer;display:flex;min-height:72px">
+<span style="width:84px;flex-shrink:0;background:linear-gradient(135deg,${p[4]},#EEF0E6);position:relative">${p[3]>0?`<span class="pt" style="left:40%;top:45%"></span><span class="pt s" style="left:62%;top:60%"></span>`:''}</span>
+<span style="padding:.6rem .8rem;flex-grow:1"><b style="font-weight:500;display:block" class="mono">${p[0]}</b><span class="lead" style="font-size:.78rem">${p[1]} · ${p[2]}</span><span class="lead" style="font-size:.75rem;display:block">${p[3]} samples${p[0]===F.proj?' · <span class="ok">open</span>':''}</span></span></button>`).join('')}</div>`}
+if(F.scr==='session'){h=`<div class="bar"><button class="ib" data-go="projects" aria-label="Projects">≡</button><b>Today's session</b><small>${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</small></div>
+<div class="body"><div><label class="l" for="garden">Garden / project <span class="r">*</span></label>${sel('s.garden',['Neuchâtel (JBN)','Champex (JBC)','Fribourg (JBUF)','Prague (JBP)','London, Kew (JBK)','Valais gradient'],s.garden,'garden')}</div>
+<div><label class="l" for="col">Collector <span class="a">your account</span></label><input class="i" id="col" data-in="s.collector" value="${esc(s.collector)}"></div>
+<div><span class="l">Preservation method <span class="r">*</span></span>${chips('s.pres',PRES,s.pres)}</div>
+<div><label class="l" for="pack">Packaging in contact with tissue <span class="r">*</span></label>${sel('s.pack',['Aluminium foil','Paper envelope','Tea bag / filter paper bag','Coffee filter','Cryotube','Microtube 2 mL','Falcon tube 50 mL','Zip bag'],s.pack,'pack')}</div>
+<div class="g2"><div><label class="l" for="tr">Transport <span class="r">*</span></label>${sel('s.trans',['Liquid N2','Dry ice','Cooled 4 °C','Ambient'],s.trans,'tr')}</div><div><label class="l" for="du">Lab reached in <span class="r">*</span></label>${sel('s.dur',['< 8 h','< 24 h','< 48 h','< 72 h','> 72 h'],s.dur,'du')}</div></div>
+<div><span class="l">Identification <span class="r">*</span></span>${chips('s.ident',['Garden label','Flora key','Expert'],s.ident)}</div>
+<div class="box" style="display:flex;align-items:center;gap:.6rem"><span style="flex-grow:1">Field printer: <b class="${L.pr.on?'ok':'warn'}">${L.pr.on?L.pr.name:'not connected'}</b><br>For spare tube labels on site.</span><button class="c" data-act="fprint">${L.pr.on?'Disconnect':'Connect'}</button></div></div>
+<div class="foot"><button class="btn hot" data-go="map">Start sampling</button></div>`}
+if(F.scr==='map'){const todo=F.done.filter(d=>!d.sent).length;
+h=`<div class="map"><div class="ortho"></div>${F.done.map(d=>`<span class="pt ${d.sent?'s':''}" style="left:${d.x}%;top:${d.y}%"></span><span class="lb mono" style="left:${d.x}%;top:${d.y}%">${d.id}</span>`).join('')}
+<div class="cross"></div>
+<button class="rb" style="left:12px;top:12px;background:var(--ink);color:#fff" data-go="projects" aria-label="Projects">≡</button>
+<button class="sess" data-go="session"><b>${esc(s.garden)}</b>${esc(s.pres)} · ${esc(s.pack.toLowerCase())} · ${F.done.length} samples</button>
+<div style="position:absolute;left:12px;top:76px;display:flex;flex-direction:column;gap:8px">${['⌖','✎','↺'].map(t=>`<button class="rb" style="position:static;background:#fff;color:var(--ink);width:44px;height:44px" aria-label="Map tool">${t}</button>`).join('')}</div>
+<button class="rb" style="right:14px;bottom:96px;background:var(--ink);color:#6EA8FF" aria-label="My position">◎</button>
+<button class="rb" style="right:14px;bottom:24px;width:62px;height:62px;background:var(--green);color:#fff;font-size:2rem" data-act="new" aria-label="New sample">+</button>
+<button style="position:absolute;left:12px;bottom:24px;background:#fff;border:0;padding:.6rem .8rem;font:inherit;font-size:.85rem;box-shadow:0 1px 4px rgba(0,0,0,.2);cursor:pointer;min-height:44px" data-go="sync"><span style="background:var(--orange);padding:0 6px;font-weight:500">${todo}</span> to send</button>
+<div style="position:absolute;left:12px;bottom:80px;background:#fff;padding:.3rem .5rem;font-size:.75rem;color:var(--mute)">GPS ± 4 m · 50 m ⟷</div></div>`}
+if(F.scr==='form'){const miss=[!c.id&&'sample ID',!c.taxon&&'taxon'].filter(Boolean),np=Object.keys(c.photos).length,mp=PHOTOS.slice(0,5).filter(p=>!c.photos[p[0]]).length;
+const T=[['Plant',miss.length],['Site',0],['Preservation',0],['Photos '+np+'/6',mp]];
+h=`<div class="bar"><button class="ib" data-act="cancel" aria-label="Cancel">×</button><b>${c.id?`<span class="mono">${c.id}</span>`:'New sample'}</b></div>
+<div class="tabs">${T.map(([n,bad],i)=>`<button class="${i===F.tab?'on':''}" data-tab="${i}">${bad?'<span class="dot"></span>':''}${n}</button>`).join('')}</div><div class="body">`;
+if(F.tab===0){const q=(c.q||'').toLowerCase(),hits=q.length>1?TAXA.filter(t=>t[0].toLowerCase().includes(q)):[];
+h+=`<div><span class="l">Sample ID <span class="r">*</span></span><div style="display:flex;gap:.5rem"><div class="i mono" style="display:flex;align-items:center">${c.id||'<span style="color:#999">scan the tube</span>'}</div><button class="c" data-act="scan" style="min-width:56px" aria-label="Scan QR code">${c.id?'↻':'Scan'}</button></div>${c.id?'<p class="lead ok" style="font-size:.78rem;margin-top:.3rem">Scanned. Tube free, never used.</p>':''}</div>
+<div><label class="l" for="tx">Taxon <span class="r">*</span> <span class="a">${c.manual?'typed by hand':'garden list'}</span></label><input class="i" id="tx" data-in="cur.q" value="${esc(c.q??c.taxon)}" placeholder="Start typing, e.g. Semp" autocomplete="off">
+${hits.length&&c.q!==c.taxon?`<div style="border:1px solid var(--line);border-top:0">${hits.map((t,i)=>`<button class="mod" style="min-height:44px;padding:.5rem .75rem" data-pick="${TAXA.indexOf(t)}"><div><i>${esc(t[0])}</i><div class="lead" style="font-size:.75rem">${t[1]} · ${t[2]}</div></div></button>`).join('')}</div>`:''}
+${c.taxon?`<p class="lead" style="font-size:.78rem;margin-top:.3rem">Matched: <b class="ok">${esc(c.taxon.split(' ').slice(0,2).join(' '))}</b> · ${esc(c.fam)}</p>`:`<p class="lead" style="font-size:.78rem;margin-top:.3rem"><label><input type="checkbox" data-chk="cur.manual" ${c.manual?'checked':''} style="width:16px;height:16px;vertical-align:-3px"> Not in the list, I type it</label></p>`}</div>
+<div><label class="l" for="ip">IPEN / accession</label><input class="i" id="ip" data-in="cur.ipen" value="${esc(c.ipen)}"></div>
+<div><span class="l">Organ sampled <span class="r">*</span></span>${chips('cur.organ',['Leaf','Flower','Stem','Root','Fruit','Whole plant'],c.organ)}</div>
+<div class="g2"><div><span class="l">Plant state</span>${chips('cur.flower',['Flowering','Not'],c.flower)}</div><div><span class="l">Wild</span>${chips('cur.wild',['Yes','No'],c.wild)}</div></div>
+<div class="box">Position <b>47.0021, 6.9512 ± 4 m</b> <span class="a">auto</span><br>Time <b>${c.photos.cut||c.cut}</b> <span class="a">${c.photos.cut?'cut photo':'auto'}</span> · Collector <b>${esc(s.collector)}</b><br>Identification <b>${esc(s.ident.toLowerCase())}</b> <span class="a">session</span></div>`}
+if(F.tab===1)h+=`<p class="h">The individual</p><div><label class="l" for="hb">Herbivory: <b id="hbv">${c.herb}</b> %</label><input type="range" id="hb" min="0" max="100" step="5" value="${c.herb}" data-in="cur.herb"></div>
+<div><label class="l" for="ce">Comment on the plant</label><input class="i" id="ce" data-in="cur.ceco" value="${esc(c.ceco)}" placeholder="Damage, galls, pathogens…"></div>
+<p class="h">The site</p><div><span class="l">Soil <span class="a">kept for next plant</span></span>${chips('cur.soil',['Garden bed','Rock garden','Pot','Greenhouse'],c.soil)}</div>
+<div><span class="l">Weather <span class="a">kept for next plant</span></span>${chips('cur.weather',['Sunny','Cloudy','Rain','After rain'],c.weather)}</div>
+<div class="box">Air temperature <b>11 °C</b> <span class="a">auto, weather station</span></div>
+<div><label class="l" for="cv">Comment on the site</label><input class="i" id="cv" data-in="cur.cenv" value="${esc(c.cenv)}" placeholder="Watered today, shade…"></div>`;
+if(F.tab===2){const fz=['Liquid N2','Dry ice'].includes(c.pres);h+=`<div><span class="l">Preservation method <span class="r">*</span>${c.pres===s.pres?' <span class="a">session</span>':''}</span>${chips('cur.pres',PRES,c.pres)}</div>
+<div><label class="l" for="pk">Packaging <span class="r">*</span></label>${sel('cur.pack',['Aluminium foil','Paper envelope','Tea bag / filter paper bag','Coffee filter','Cryotube','Microtube 2 mL','Falcon tube 50 mL','Zip bag'],c.pack,'pk')}</div>
+${fz?`<div class="box">Cut: <b>${c.photos.cut?c.photos.cut:'time of the “cut” photo'}</b> <span class="a">auto</span><br>Into the ${c.pres==='Liquid N2'?'nitrogen':'dry ice'}: <b>time the sample is saved and sent</b> <span class="a">auto</span></div>`:''}
+${c.pres==='Silica gel'?`<div class="g2"><div><label class="l" for="sr">Silica : tissue</label><input class="i" id="sr" value="10:1"></div><div><label class="l" for="sd">Drying time</label><input class="i" id="sd" value="48 h"></div></div>`:''}
+${c.pres==='Field extraction'?`<div class="g2"><div><label class="l" for="fs">Solvent <span class="r">*</span></label><select class="i" id="fs"><option>MeOH:H2O 80:20</option><option>EtOH:H2O 70:30</option></select></div><div><label class="l" for="fv">Volume (mL) <span class="r">*</span></label><input class="i" id="fv" value="1"></div></div>`:''}
+<div class="g2"><div><label class="l" for="tt">Transport <span class="r">*</span></label>${sel('cur.trans',['Liquid N2','Dry ice','Cooled 4 °C','Ambient'],c.trans,'tt')}</div><div><label class="l" for="st">Storage <span class="r">*</span></label>${sel('cur.store',['-80 °C','-20 °C','4 °C','Ambient'],c.store,'st')}</div></div>`}
+if(F.tab===3)h+=`<p class="lead">iNaturalist tag <span class="mono">emi_external_id:${c.id||'dbgi_…'}</span>.</p>
+<div class="ph">${PHOTOS.map(([k,d],i)=>`<button class="${c.photos[k]?'ok':''}" data-photo="${k}"><b>${k}</b>${d}<span${!c.photos[k]&&i<5?' class="r"':''}>${c.photos[k]?'✓ taken':i<5?'required':'optional'}</span></button>`).join('')}</div>
+${c.photos.panel_label?`<div class="box"><b>Read from the panel_label photo</b><br>Tube code ${c.id?`<b>${c.id}</b> <span class="ok">matches the scan</span>`:'<span class="warn">no scan yet</span>'}<br>Garden label ${c.taxon?`<b>${esc(c.taxon.split(' ').slice(0,2).join(' '))}</b> <span class="ok">matches the taxon</span>`:'<span class="warn">no taxon yet</span>'}</div>`:''}
+<label style="display:flex;align-items:center;gap:.6rem;font-size:.9rem;min-height:44px"><input type="checkbox" data-chk="cur.inat" ${c.inat?'checked':''}> Upload to iNaturalist (DBGI project)</label>`;
+h+=`</div><div class="foot">${F.tab<3?`<button class="btn" data-tab="${F.tab+1}">Next: ${['site','preservation','photos'][F.tab]}</button>`:`<button class="btn sec" data-act="save">Save</button><button class="btn hot" style="flex:1.5" data-act="savenext">Save + next plant</button>`}</div>`}
+if(F.scr==='sync'){const todo=F.done.filter(d=>!d.sent);
+h=`<div class="bar"><button class="ib" data-go="map" aria-label="Back">‹</button><b>Send to DBGI</b></div><div class="body">
+<div class="g2" style="grid-template-columns:repeat(3,1fr);text-align:center">${[[F.done.length,'samples today',''],[F.done.length-todo.length,'sent',''],[todo.length,'to send','hot']].map(([n,l,k])=>`<div style="background:${k?'#FFE6DB':'var(--bg)'};padding:.75rem .25rem"><div style="font-size:1.6rem;color:${k?'var(--warn)':'var(--green)'}">${n}</div><div class="lead" style="font-size:.72rem">${l}</div></div>`).join('')}</div>
+<div><p class="h">Before sending</p>${todo.length?todo.map(d=>`<div class="row"><span class="mono">${d.id}</span><span style="flex-grow:1" class="lead"><i>${esc(d.t)}</i></span>${d.miss?`<span class="warn">${d.miss}</span>`:'<span class="ok">complete</span>'}</div>`).join(''):'<p class="lead">Nothing left to send.</p>'}</div>
+
+<div class="box">Today becomes collection batch <b class="mono">batch_000031</b> · ${esc(s.garden)} · ${F.done.length} samples <span class="a">auto</span></div>
+<div style="border:1px solid var(--line);padding:.75rem;display:flex;flex-direction:column;gap:.45rem"><b style="font-weight:500">End of the day</b><p class="lead" style="font-size:.78rem;margin:0"></p>${F.ended?`<div class="ok" style="font-size:.85rem">✓ ${F.ended}</div>`:`<div class="g2"><select class="i" id="eto" aria-label="Storage"><option>-80 °C freezer</option><option>-20 °C freezer</option><option>4 °C fridge</option></select><button class="c on" data-act="endsess">Box in, now</button></div><p class="lead" style="font-size:.75rem;margin:0">Not tonight? Skip, you will be asked later.</p>`}</div>
+${F.prev.filter(p=>!p.in).map((p,i)=>`<div style="border:1px solid #F2C8B5;background:#FFF6F1;padding:.75rem;display:flex;flex-direction:column;gap:.45rem"><b style="font-weight:500">${p.d}: ${p.n} samples (<span class="mono">${p.id}</span>)</b><p class="lead" style="font-size:.78rem;margin:0">When did they go in the freezer?</p><div class="g2"><input class="i" type="datetime-local" id="pv${i}" value="${p.def}" aria-label="Day and time" style="font-size:.85rem"><button class="c on" data-pv="${F.prev.indexOf(p)}" data-k="${i}">Save</button></div></div>`).join('')}</div>
+<div class="foot"><button class="btn hot" data-act="send" ${todo.length?'':'disabled'}>Send ${todo.length} sample${todo.length>1?'s':''}</button></div>`}
+if(F.toast)h+=`<div class="toast">${F.toast}</div>`;
+a.innerHTML=h}
+/* ----- labo (structure EMI) ----- */
+const MODS=[['batches','Batches','Create a batch with its description'],['reception','Reception','When each field day went into the freezer'],['preparation','Preparation','Drying, fill racks, move a tube'],['weighing','Weighing','Scan, weigh, label, next'],['extraction','Extraction','Solvent and volume, scan, label'],['aliquoting','Aliquoting','Blank, QC, samples → injection CSV'],['summary','Batch check','Required fields filled or missing'],['search','Search','Find a sample: rack and position']];
+const pad=n=>String(n).padStart(6,'0');
+const prBtn=()=>`<button class="ib" data-lgo="printer" aria-label="Printer" style="font-size:.75rem;width:auto;padding:0 .5rem;gap:.35rem"><span style="width:9px;height:9px;border-radius:50%;background:${L.pr.on?'#7CD67C':'#FF6F3D'}"></span>${L.pr.on?'Printer':'No printer'}</button>`;
+const back=t=>`<div class="bar"><button class="ib" data-lgo="home" aria-label="Back">‹</button><b>${t}</b>${prBtn()}</div>`;
+const scanBox=(lbl,act)=>`<button class="scanbox" data-lact="${act}"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7V3h4M17 3h4v4M21 17v4h-4M7 21H3v-4"></path><path d="M7 12h10"></path></svg><span>${lbl}</span><small>tap to simulate a scan</small></button>`;
+const BTYPES=[['collection','One field day: made automatically by the field app'],['extraction','Corresponds to the batch of solvent used to extract the molecules in the samples'],['ms','A group of samples analysed by MS with the same parameters'],['dried_samples','A group of samples from the same collection campaign'],['aliquots','A group of aliquots'],['project','An EMI project, to find all its samples']];
+function lab(){const a=$('#app');let h='';
+if(L.scr==='login')h=`<div class="bar"><b>DBGI wet lab</b></div><div class="body" style="justify-content:center;gap:1.1rem">
+<div style="text-align:center;margin-bottom:.5rem"><div style="font-size:1.5rem;color:var(--green);font-weight:500">Sign in</div></div>
+<div><label class="l" for="lsrv">Directus server</label><input class="i mono" style="font-size:.85rem" id="lsrv" data-lin2="srv" value="${esc(L.srv)}"></div>
+<div><label class="l" for="lusr">E-mail</label><input class="i" id="lusr" type="email" data-lin2="user" value="${esc(L.user)}" placeholder="firstname.lastname@unine.ch" autocomplete="username"></div>
+<div><label class="l" for="lpw">Password</label><input class="i" id="lpw" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+<button class="btn hot" style="flex:0 0 auto" data-lact="login">Sign in</button></div>`;
+if(L.scr==='home')h=`<div class="bar"><b>DBGI wet lab</b>${prBtn()}</div>
+<div style="background:var(--bg);padding:.7rem 1rem;border-bottom:1px solid var(--line)"><div style="display:flex;align-items:center"><div style="flex-grow:1"><div class="lead" style="font-size:.75rem">Signed in to <span class="mono">${esc(L.srv.replace('https://',''))}</span></div><b style="font-weight:500">${esc(L.user||'DBGI member')}</b></div><button class="c" data-lact="logout">Sign out</button></div></div>
+<div style="padding:.55rem 1rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.6rem;font-size:.82rem;background:${L.off.on?'#FFE6DB':'#fff'}"><label style="display:flex;align-items:center;gap:.5rem;flex-grow:1"><input type="checkbox" data-off="1" ${L.off.on?'':'checked'} style="width:18px;height:18px"> Lab wifi ${L.off.on?'<b class="warn">off: working offline</b>':'on'}</label>${L.off.q?`<span>${L.off.q} to sync</span><button class="c" style="min-height:34px" data-lact="sync" ${L.off.on?'disabled':''}>Sync</button>`:'<span class="lead">all synced</span>'}</div>
+<div class="body" style="padding:0;gap:0">${MODS.map(([k,n,d],i)=>`<button class="mod" data-lgo="${k}"><span class="n">${i+1}</span><div style="flex-grow:1">${n}<div class="lead" style="font-size:.75rem">${d}</div></div><span class="lead">›</span></button>`).join('')}</div>`;
+if(L.scr==='printer'){const p=L.pr;h=back('Field printer')+`<div class="body"><div class="box" style="font-size:.9rem">Status: <b class="${p.on?'ok':'warn'}">${p.on?'Connected to '+p.name:'Disconnected'}</b></div>
+${p.on?`<div><span class="l">Label size</span>${chips('L.pr.size',['12 × 25 mm (tube)','25 × 50 mm (rack)'],p.size)}</div><button class="btn sec" style="flex:0 0 auto" data-lact="prtest">Print a test label</button><button class="btn sec" style="flex:0 0 auto" data-lact="proff">Disconnect</button>`:
+`${p.searching?`<p class="h">Printers nearby</p>${['Brady M211 · BMP-4F21','Brady M211 · BMP-0A07'].map(n=>`<button class="mod" style="border:1px solid var(--line)" data-lact="prpick" data-n="${n.split(' · ')[0]}"><span style="flex-grow:1">${n}</span><span class="ok">Connect</span></button>`).join('')}`:`<button class="btn" style="flex:0 0 auto" data-lact="prsearch">Search for printers</button>`}`}
+</div>`}
+if(L.scr==='batches'){const nb=L.nb,next='batch_'+pad(31+L.batches.length-3);h=back('Batches')+`<div class="body"><p class="h">New batch</p>
+<div class="box">Batch ID <b class="mono">${next}</b> <span class="a">auto</span> · Status <b class="ok">● ok</b></div>
+<div><span class="l">Batch type <span class="r">*</span></span>${chips('L.nb.type',['extraction'],nb.type)}<p class="lead" style="font-size:.75rem;margin-top:.3rem">${esc(BTYPES.find(t=>t[0]===nb.type)[1])}.</p></div>
+<div><label class="l" for="bs">Short description <span class="r">*</span></label><input class="i" id="bs" data-lin2="nb.short" value="${esc(nb.short)}" placeholder="extraction batch ML1"></div>
+<div><label class="l" for="bd">Description</label><textarea class="i" id="bd" rows="2" data-lin2="nb.desc" placeholder="field extraction batch liquid 80/20">${esc(nb.desc)}</textarea></div>
+<div><label class="l" for="bc">Comments</label><textarea class="i" id="bc" rows="2" data-lin2="nb.com">${esc(nb.com)}</textarea></div>
+<button class="btn hot" style="flex:0 0 auto" data-lact="mkbatch">Create ${next}</button>
+<div class="box" style="font-size:.78rem">Automatic: <b>collection</b> (one per field day, by the field app), <b>aliquots</b> (when a plate is validated in Aliquoting), <b>project</b> (from QField), <b>ms</b> (from the RAW / mzML files at deposit).</div>${nb.type==='extraction'?`<p class="lead" style="font-size:.78rem;margin:0">Prints the blank label (<span class="mono">${next}_blank</span>).</p>`:''}
+<p class="h">Batches</p>${L.batches.filter(b=>b[1]!=='dried_samples').map((b,i)=>`<div class="row" style="align-items:flex-start;flex-wrap:wrap"><span class="mono">${b[0]}</span>${['collection','project','ms','aliquots'].includes(b[1])?'<span class="a" style="order:3">auto</span>':''}<div style="flex-grow:1"><b style="font-weight:500">${esc(b[2])}</b><div class="lead" style="font-size:.75rem">${esc(b[1])}${b[3]?' · '+esc(b[3]):''}</div></div>${b[1]==='extraction'?`<div style="width:100%;display:flex;gap:.4rem;align-items:center;margin-top:.3rem"><span class="lead" style="font-size:.75rem;flex-grow:1">Blank label <span class="mono">${b[0]}_blank</span></span><label class="lead" style="font-size:.75rem" for="bl${i}">×</label><input class="i" id="bl${i}" value="1" inputmode="numeric" style="width:3.2rem;min-height:36px;padding:.3rem"><button class="c" style="min-height:36px" data-lact="blank" data-i="${i}" data-id="${b[0]}">Reprint</button></div>`:''}</div>`).join('')}</div>`}
+if(L.scr==='preparation'){const RT=L.rt,rk=L.rack,R0=rk.label&&L.racks[rk.label];
+h=back('Preparation')+`<div class="body">`;
+const ptabs=c=>`<div style="display:flex;border:1px solid var(--green)">${[['dry','Drying'],['fill','Fill a rack'],['move','Move a tube']].map(([k,t])=>`<button class="c ${c===k?'on':''}" style="flex:1;border:0" data-pmode="${k}">${t}</button>`).join('')}</div>`;
+if(L.pmode==='dry')h+=ptabs('dry')+dryView();
+else if(L.mv)h+=moveView();
+else if(!rk.label)h+=`${ptabs('fill')}<p class="lead"><b>1.</b> Scan a rack label. A new label gets a rack type; a known one opens with its tubes, and you fill the free places.</p>`+scanBox('Scan a rack label','rkscan')+`<p class="lead" style="font-size:.75rem">Mockup: <a href="javascript:void 0" data-lact="rkknown" style="color:var(--green)">simulate a known rack (RACK_0040, half full)</a></p>`;
+else if(!R0)h+=`<div class="box">New rack label <b class="mono">${rk.label}</b>: not linked to a rack yet.</div><p class="lead"><b>2.</b> Choose the rack type.</p>
+${RT.map(t=>`<button class="mod" style="border:1px solid var(--line)" data-rt="${esc(t.n)}" data-cap="${t.r*t.c}"><div style="flex-grow:1">${esc(t.n)}<div class="lead" style="font-size:.75rem">${t.r?t.r*t.c+' places':'no fixed places'}${t.s==='pending'?' · <span class="warn">waiting for curator</span>':''}</div></div><span class="ok">Choose</span></button>`).join('')}
+<button class="btn sec" style="flex:0 0 auto" data-lgo="newrack">Not in the list? Propose a rack type</button><button class="btn sec" style="flex:0 0 auto" data-lact="rkcancel">Wrong label, scan again</button>`;
+else{const r=R0,cap=r.rows*r.cols,used=Object.keys(r.tubes).length,free=cap?Math.max(0,cap-r.off-used):'∞',nx=nextPos(r);
+h+=`<div class="box" style="display:flex;align-items:center;gap:.6rem"><span style="flex-grow:1">Rack <b class="mono">${rk.label}</b> · ${esc(r.type)}<br><b>${used}</b> tubes · <b class="${free===0?'warn':'ok'}">${free}</b> places free${r.off?` <span class="lead">(${r.off} unusable)</span>`:''}</span><button class="c" data-lact="rkclose">Close</button></div>`;
+if(cap){h+=`${L.fix?`<div style="border:1px solid var(--line);padding:.75rem;display:flex;flex-direction:column;gap:.5rem"><label class="l" for="fx">Places really free (box damaged, rack cut…)</label><div style="display:flex;gap:.5rem"><input class="i" id="fx" inputmode="numeric" value="${free}"><button class="c on" data-lact="fixok">Save</button></div><span class="lead" style="font-size:.75rem">The last places are marked unusable on the map.</span></div>`:`<p class="lead" style="font-size:.8rem;margin:0">Count wrong? <a href="javascript:void 0" data-lact="fix" style="color:var(--green)">Set the free places by hand</a></p>`}
+<div class="rmap" style="grid-template-columns:1.2rem repeat(${r.cols},minmax(0,1fr))"><span></span>${Array.from({length:r.cols},(_,c)=>`<button class="ax axb" data-col="${c}" aria-label="Continue from column ${c+1}">${c+1}</button>`).join('')}
+${Array.from({length:r.rows},(_,ro)=>`<span class="ax">${'ABCDEFGHIJKLMNOP'[ro]}</span>`+Array.from({length:r.cols},(_,c)=>{const p=pos(ro,c),id=r.tubes[p],k=c*r.rows+ro,off=k>=cap-r.off;return `<button class="cell ${id?'f':off?'x':p===nx?'n':''}" data-cell="${p}" title="${p}${id?' '+id:''}" aria-label="${p}${id?' '+id:off?' unusable':' free'}">${id?id.slice(-3):off?'×':p===nx?'next':''}</button>`}).join('')).join('')}</div>
+<p class="lead" style="font-size:.75rem;margin:0">Order A1, B1, C1… Tap an empty place or a column to start there.</p>${r.from?`<p class="lead" style="font-size:.75rem;margin:0">Filling from <b>${pos(r.from%r.rows,Math.floor(r.from/r.rows))}</b>. <a href="javascript:void 0" data-lact="fromreset" style="color:var(--green)">Back to the first free place</a></p>`:''}${L.cell?`<div class="box" style="display:flex;flex-direction:column;gap:.5rem">Place <b>${L.cell}</b>: ${r.tubes[L.cell]?`<b class="mono">${r.tubes[L.cell]}</b><div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="c on" data-lact="cellrescan">Wrong tube? Rescan this place</button><button class="c" data-lact="cellempty">Empty it</button></div>`:'empty'}</div>`:''}`}
+h+=nx||!cap?`<p class="lead"><b>3.</b> Scan each tube. ${cap?`It goes to <b>${nx}</b>.`:''}</p>${scanBox('Scan a tube','prepscan')}`:`<div class="box warn">Rack full. Close it and scan a new rack label.</div>`}
+h+=`</div>`}
+if(L.scr==='weighing'){const w=L.w;h=back('Weighing')+`<div style="background:var(--bg);padding:.6rem 1rem;font-size:.8rem;color:var(--mute);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:.45rem">
+<label style="display:flex;align-items:center;gap:.5rem;min-height:32px"><input type="checkbox" data-wrng="on" ${w.on?'checked':''} style="width:18px;height:18px"> Check a weight range <span class="lead" style="margin-left:auto">${w.done.length} weighed</span></label>
+<button class="c" style="min-height:34px;text-align:left;border-radius:8px" data-lact="gropen">Grinding: ${esc(L.gr.dev)}, ${esc(L.gr.min)} min at ${esc(L.gr.hz)} Hz <span class="a">batch</span> ${L.gr.open?'▴':'▾'}</button>
+${L.gr.open?`<div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:.4rem"><div><label class="l" for="gdv">Grinder <span class="r">*</span></label>${sel('L.gr.dev',['Retsch MM400','Qiagen TissueLyser II','Precellys','Geno/Grinder','Mortar and pestle'],L.gr.dev,'gdv')}</div><div><label class="l" for="gmn">min</label><input class="i" id="gmn" data-lin2="gr.min" value="${esc(L.gr.min)}"></div><div><label class="l" for="ghz">Hz</label><input class="i" id="ghz" data-lin2="gr.hz" value="${esc(L.gr.hz)}"></div></div>`:''}
+${w.on?`<div style="display:flex;align-items:center;gap:.4rem"><label for="wmin">from</label><input class="i" id="wmin" inputmode="decimal" data-wrng="min" value="${w.min}" style="width:4.5rem;min-height:36px;padding:.3rem .5rem"><label for="wmax">to</label><input class="i" id="wmax" inputmode="decimal" data-wrng="max" value="${w.max}" style="width:4.5rem;min-height:36px;padding:.3rem .5rem"> mg <span class="a" style="margin-left:auto">for this batch</span></div>`:''}</div><div class="body">`;
+ if(!w.id)h+=`<p class="lead"><b>1.</b> Scan the 50 mL tube.</p>`+scanBox('Scan the tube','wscan');
+ else{const v=parseFloat(w.val),ok=!w.on||(v>=+w.min&&v<=+w.max);h+=`<div><span class="lead" style="font-size:.8rem">Tube</span> <span class="mono" style="font-size:1.2rem">${w.id}</span><div class="lead" style="font-size:.85rem">${esc(w.sp)}</div></div>
+ <div><label class="l" for="wv"><b>2.</b> Weight on the balance (mg) <span class="r">*</span></label><input class="i" id="wv" inputmode="decimal" data-lin2="w.val" value="${esc(w.val)}" style="font-size:2rem;text-align:center;font-weight:300;min-height:64px" placeholder="0.0" autofocus>
+ <p class="lead" style="font-size:.8rem;margin-top:.3rem" id="wmsg">${wmsg(w)}</p></div>
+ <button class="btn hot" style="flex:0 0 auto;min-height:56px" data-lact="wprint" ${w.val===''?'disabled':''}><b>3.</b> Save and print label</button><button class="btn sec" style="flex:0 0 auto" data-lact="wcancel">Wrong tube, scan again</button>`}
+ h+=`<div><p class="h">Done</p>${w.done.map((d,i)=>[d,i]).reverse().slice(0,8).map(([d,i])=>w.edit===i?`<div class="row" style="flex-wrap:wrap;background:var(--bg);padding:.6rem"><span class="mono" style="flex-grow:1">${d[0]}</span><input class="i" id="we" inputmode="decimal" value="${d[1]}" style="width:5rem;min-height:38px;padding:.3rem .5rem" aria-label="Corrected weight (mg)"> mg<div style="width:100%;display:flex;gap:.4rem;margin-top:.4rem"><button class="c on" data-wed="save" data-i="${i}">Save</button><button class="c" data-wed="cancel">Cancel</button><span class="lead" style="font-size:.72rem;align-self:center">The old value is kept in the history.</span></div></div>`:`<div class="row"><span class="mono">${d[0]}</span><span class="lead" style="flex-grow:1">${d[2]?`<s>${d[2]}</s> → `:''}label <span class="mono">_01</span></span><span class="${!w.on||(d[1]>=+w.min&&d[1]<=+w.max)?'':'warn'}">${d[1]} mg</span><button class="mv" style="width:auto;padding:0 .5rem" data-wed="open" data-i="${i}" aria-label="Correct the weight of ${d[0]}">Edit</button></div>`).join('')||'<p class="lead">Nothing yet.</p>'}</div></div>`}
+if(L.scr==='extraction'){const x=L.ex;h=back('Extraction')+`<div style="padding:.85rem 1rem;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.6fr 1fr;gap:.75rem"><div style="grid-column:1/-1"><label class="l" for="bpextraction">Batch <span class="r">*</span></label><select class="i" id="bpextraction">${L.batches.filter(b=>b[1]==='extraction').map(b=>`<option>${b[0]} · ${esc(b[2])}</option>`).join('')||'<option>Create a extraction batch first</option>'}</select></div>
+ <div><label class="l" for="sv">Liquid <span class="r">*</span></label>${sel('L.ex.solv',['MeOH:H2O:FA 80:19.9:0.1','MeOH:H2O 80:20','MeOH:H2O 70:30','EtOH:H2O 70:30'],x.solv,'sv')}</div>
+ <div><label class="l" for="vol">Volume (mL) <span class="r">*</span></label><input class="i" id="vol" inputmode="decimal" data-lin2="ex.vol" value="${esc(x.vol)}"></div>
+<details style="grid-column:1/-1"><summary class="lead" style="font-size:.8rem;cursor:pointer">Agitation ${esc(L.exs.ag.toLowerCase())} ${esc(L.exs.agmin)} min · centrifuge ${esc(L.exs.rpm)} rpm ${esc(L.exs.cmin)} min · filtration ${esc(L.exs.fil.toLowerCase())} · stored ${esc(L.exs.sto)} <span class="a">batch</span></summary>
+<div style="display:grid;grid-template-columns:1.6fr 1fr;gap:.6rem;margin-top:.6rem"><div><label class="l" for="xag">Agitation <span class="r">*</span></label>${sel('L.exs.ag',['Bead homogenisation','Shaking','Sonication','Vortex','None'],L.exs.ag,'xag')}</div><div><label class="l" for="xam">Time (min) <span class="r">*</span></label><input class="i" id="xam" data-lin2="exs.agmin" value="${esc(L.exs.agmin)}"></div>
+<div><label class="l" for="xrp">Centrifuge (rpm)</label><input class="i" id="xrp" data-lin2="exs.rpm" value="${esc(L.exs.rpm)}"></div><div><label class="l" for="xcm">min</label><input class="i" id="xcm" data-lin2="exs.cmin" value="${esc(L.exs.cmin)}"></div>
+<div><label class="l" for="xfi">Filtration <span class="r">*</span></label>${sel('L.exs.fil',['None','0.22 µm PTFE','0.22 µm PVDF','0.45 µm PTFE','Filter plate'],L.exs.fil,'xfi')}</div><div><label class="l" for="xst">Extract stored <span class="r">*</span></label>${sel('L.exs.sto',['-80 °C','-20 °C','4 °C','Same day'],L.exs.sto,'xst')}</div></div>
+<button class="c" style="margin-top:.5rem" data-lact="timer">Start a ${esc(L.exs.agmin)} min agitation timer</button></details></div>
+ <div class="body"><p class="lead"></p>${scanBox('Scan the weighed tube','exscan')}
+ <div><p class="h">Extracts (${x.done.length})</p>${x.done.slice().reverse().slice(0,5).map(d=>`<div class="row"><span class="mono">${d}</span><span class="lead" style="flex-grow:1">→ <span class="mono">${d}_01</span></span><span>${esc(x.vol)} mL</span></div>`).join('')||'<p class="lead">Nothing yet.</p>'}</div></div>`}
+if(L.scr==='aliquoting'){const q=L.al;const csv=alCsv();h=back('Aliquoting')+`<div style="padding:.85rem 1rem;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:.6rem">
+ <div class="g2"><div><label class="l" for="auv">Volume taken (µL) <span class="r">*</span></label><input class="i" id="auv" inputmode="decimal" data-lin2="al.vol" value="${esc(q.vol)}"></div><div><span class="l">Dilution <span class="r">*</span></span>${chips('L.al.dil',['No','Yes'],q.dil)}</div></div>
+ ${q.dil==='Yes'?`<div class="g2"><div><label class="l" for="adf">Factor</label><input class="i" id="adf" data-lin2="al.fac" value="${esc(q.fac)}"></div><div><label class="l" for="ads">In</label><select class="i" id="ads"><option>MeOH:H2O 80:20</option><option>Initial mobile phase</option></select></div></div>`:''}</div>
+ <div class="body"><div style="border:1px solid var(--line);padding:.75rem;display:flex;flex-direction:column;gap:.5rem"><b style="font-weight:500">Injection order</b>
+ <p class="lead" style="font-size:.78rem;margin:0">CSV, one <span class="mono">type</span> per line: blk, qc, sample.</p>
+ <div style="display:flex;gap:.4rem;flex-wrap:wrap"><label class="c" style="display:flex;align-items:center;cursor:pointer">Upload CSV<input type="file" accept=".csv,.txt" data-alfile="1" style="display:none"></label><button class="c" data-lact="altpl">Example order</button>${q.list.length?'<button class="c" data-lact="alclear">Clear</button>':''}</div>
+ <details><summary class="lead" style="font-size:.78rem;cursor:pointer">or paste it</summary><textarea class="i mono" rows="3" id="alpaste" style="font-size:.75rem;margin-top:.4rem" placeholder="type&#10;blk&#10;qc&#10;sample&#10;sample"></textarea><button class="c" style="margin-top:.4rem" data-lact="alpaste">Use this order</button></details>
+ ${q.list.length?`<p class="lead" style="font-size:.78rem;margin:0">${q.list.filter(r=>r[0]==='sample'&&r[1]).length} / ${q.list.filter(r=>r[0]==='sample').length} sample slots filled</p>`:''}</div>
+ <div class="g2"><button class="btn sec" data-lact="alblank">+ Blank</button><button class="btn sec" data-lact="alqc">+ QC</button></div>${scanBox(nextSlot()>=0?`Scan the sample for ${wellOf(nextSlot())}`:'Scan a sample extract','alscan')}
+ <div><p class="h">Plate (${q.list.length})</p>${q.list.map((r,i)=>`<div class="row" style="${i===nextSlot()?'background:#FFF1EA':''}"><span class="lead mono" style="width:2.2rem">${wellOf(i)}</span><span class="${r[0]==='sample'&&r[1]?'mono':'lead'}" style="flex-grow:1">${r[0]==='sample'?(r[1]||(i===nextSlot()?'<b class="warn">next scan</b>':'sample, to scan')):r[0]==='blank'?'Blank (solvent)':'QC pool'}</span>${r[1]?'<span class="a">label</span>':''}<span style="display:flex;gap:2px"><button class="mv" data-mv="-1" data-i="${i}" aria-label="Move up" ${i?'':'disabled'}>↑</button><button class="mv" data-mv="1" data-i="${i}" aria-label="Move down" ${i<q.list.length-1?'':'disabled'}>↓</button><button class="mv" data-mv="x" data-i="${i}" aria-label="Remove">×</button></span></div>`).join('')||'<p class="lead">Upload an order, or start with a blank, then a QC.</p>'}</div>
+ <div><p class="h">CSV for the injection sequence</p><pre class="mono" style="font-size:.68rem;background:var(--bg);padding:.6rem;overflow-x:auto;margin:.4rem 0;white-space:pre">${esc(csv)}</pre><div style="display:flex;gap:.5rem"><button class="btn sec" data-lact="alcsv" ${q.list.length?'':'disabled'}>Copy CSV</button><button class="btn hot" style="flex:1.5" data-lact="alok" ${q.list.length&&nextSlot()<0?'':'disabled'}>Validate the plate</button></div>
+${q.list.length&&nextSlot()>=0?'<p class="lead" style="font-size:.75rem;margin:.3rem 0 0">Fill every sample slot to validate.</p>':''}</div></div>`}
+if(L.scr==='reception'){const S=L.rc.sess;h=back('Reception')+`<div class="body"><p class="lead">When did each field day go into the freezer?</p>
+${S.filter(s=>!s.in).length?`<div class="box warn">${S.filter(s=>!s.in).length} field day${S.filter(s=>!s.in).length>1?'s':''} waiting.</div>`:''}
+${S.map((s,i)=>`<div style="border:1px solid var(--line);padding:.8rem;display:flex;flex-direction:column;gap:.45rem"><div style="display:flex;align-items:baseline;gap:.5rem"><b style="font-weight:500;flex-grow:1">${s.d} · ${s.n} samples</b><span class="mono lead" style="font-size:.75rem">${s.id}</span></div>
+<div class="lead" style="font-size:.8rem">${esc(s.g)} · collection batch · ${esc(s.pres)} · last tube frozen ${s.last}</div>
+${s.in?`<div class="ok" style="font-size:.85rem">✓ In ${esc(s.sto)} on ${s.in} · transport ${s.dur} <span class="a">auto</span></div>`:`<div class="g2"><div><label class="l" for="rs${i}">Put in</label><select class="i" id="rs${i}"><option>-80 °C freezer</option><option>-20 °C freezer</option><option>4 °C fridge</option></select></div><div><label class="l" for="rt${i}">Day and time</label><input class="i" id="rt${i}" type="datetime-local" value="${s.def}" style="font-size:.85rem"></div></div><button class="btn hot" style="flex:0 0 auto;min-height:46px" data-rcin="${i}">In the freezer</button>`}</div>`).join('')}
+</div>`}
+if(L.scr==='msbatch'){const m=L.ms,al=L.batches.filter(b=>b[1]==='aliquots');h=back('MS batch')+`<div class="body"><p class="lead">One MS batch per injection run. The RAW files are linked to these settings by their names.</p>
+<div class="g2"><div><label class="l" for="mlc">LC <span class="r">*</span></label>${sel('L.ms.lc',['Vanquish Horizon','Vanquish Flex','Acquity UPLC I-Class','ExionLC AD','1290 Infinity II'],m.lc,'mlc')}</div><div><label class="l" for="mcol">Column <span class="r">*</span></label>${sel('L.ms.col',['Acquity HSS T3','Acquity BEH C18','Kinetex C18','Kinetex Biphenyl'],m.col,'mcol')}</div></div>
+<div><span class="l">Polarity <span class="r">*</span></span>${chips('L.ms.pol',['Positive','Negative','Switching'],m.pol)}</div>
+<div><label class="l" for="mme">Instrument method name</label><input class="i mono" id="mme" data-lin2="ms.meth" value="${esc(m.meth)}"></div>
+<div><label class="l" for="mal">Plate (aliquots batch) <span class="r">*</span></label><select class="i" id="mal">${al.map(b=>`<option>${b[0]} · ${esc(b[2])}</option>`).join('')}</select><p class="lead" style="font-size:.75rem;margin-top:.3rem">${L.al.list.length?`${L.al.list.length} injections from Aliquoting, in order.`:'Build the plate in Aliquoting first.'}</p></div>
+<div class="box">MS model, gradient, source settings and file names are read from the RAW files <span class="a">auto</span><br>Expected files: <b>${L.al.list.length||'–'}</b> · <span class="mono">${esc(m.meth)}_${m.pol==='Negative'?'neg':'pos'}_A1.raw</span>…</div>
+<button class="btn hot" style="flex:0 0 auto" data-lact="msok">Create MS batch</button></div>`}
+if(L.scr==='summary'){const b0=L.batches.find(b=>b[1]==='extraction')||[],checks=[
+['Reception','Transport temperature','1'],['Reception','Transport duration',L.rc.sess.every(s=>s.in)],['Reception','Storage before extraction',L.rc.sess.every(s=>s.in)],
+['Drying','Drying in the lab',!!L.dr.m],['Drying','Time before drying',L.dr.done.length>0],['Drying','Drying duration',L.dr.done.length>0],
+['Weighing','Material state','1'],['Grinding','Grinding device',!!L.gr.dev],
+['Extraction','Solvent',!!L.ex.solv],['Extraction','Volume',!!L.ex.vol],['Extraction','Agitation and time',!!(L.exs.ag&&L.exs.agmin)],['Extraction','Filtration',!!L.exs.fil],['Extraction','Extract storage',!!L.exs.sto],
+['Aliquoting','Injection order (plate CSV)',L.al.list.length>0]],ok=checks.filter(c=>c[2]).length;
+h=back('Batch check')+`<div class="body"><div><label class="l" for="sb">Batch</label><select class="i" id="sb">${L.batches.map(b=>`<option>${b[0]} · ${esc(b[2])}</option>`).join('')}</select></div>
+<div class="box"><b>${ok} / ${checks.length}</b> required fields filled. ${ok===checks.length?'<span class="ok">Ready for the portal.</span>':'Fill the missing ones in their module.'}</div>
+<div>${checks.map(c=>`<div class="row"><span class="${c[2]?'ok':'warn'}" style="width:1.2rem">${c[2]?'✓':'!'}</span><span style="flex-grow:1">${c[1]}</span><span class="lead" style="font-size:.75rem">${c[0]}</span></div>`).join('')}</div>
+<p class="lead" style="font-size:.78rem">LC-MS settings come from the RAW / mzML files at deposit.</p></div>`}
+if(L.scr==='newrack'){const n=L.nrt,cap=(+n.r||0)*(+n.c||0),name=n.k==='Bag'?`Bag · ${n.man||'…'}`:`${n.k} ${n.r||'?'} × ${n.c||'?'} · ${n.t}`;
+const dup=L.rt.find(t=>n.k!=='Bag'&&t.r==+n.r&&t.c==+n.c&&t.t===n.t)||L.rt.find(t=>n.k!=='Bag'&&t.r*t.c===cap&&cap>0);
+const okf=n.k==='Bag'?n.man:(+n.r>0&&+n.c>0&&n.photo&&n.man);
+h=`<div class="bar"><button class="ib" data-lgo="preparation" aria-label="Back">‹</button><b>Propose a rack type</b></div><div class="body">
+<div><span class="l">Kind <span class="r">*</span></span>${chips('L.nrt.k',['Box','Rack','Plate','Bag'],n.k)}</div>
+${n.k!=='Bag'?`<div class="g2"><div><label class="l" for="nr">Rows <span class="r">*</span></label><input class="i" id="nr" inputmode="numeric" data-lin2="nrt.r" value="${esc(n.r)}" placeholder="9"></div><div><label class="l" for="nc">Columns <span class="r">*</span></label><input class="i" id="nc" inputmode="numeric" data-lin2="nrt.c" value="${esc(n.c)}" placeholder="9"></div></div>
+<div><span class="l">Holds <span class="r">*</span></span>${chips('L.nrt.t',['2 mL tube','1.5 mL tube','15 mL Falcon','50 mL Falcon','cryotube','deep well'],n.t)}</div>`:''}
+<div class="g2"><div><label class="l" for="nm">Manufacturer <span class="r">*</span></label><input class="i" id="nm" data-lin2="nrt.man" value="${esc(n.man)}" placeholder="Sarstedt"></div><div><label class="l" for="nref">Catalogue ref.</label><input class="i" id="nref" data-lin2="nrt.ref" value="${esc(n.ref)}" placeholder="95.064.981"></div></div>
+${n.k!=='Bag'?`<button class="scanbox" data-lact="nrphoto" style="padding:.8rem">${n.photo?'<span class="ok">✓ Photo taken</span><small>tap to retake</small>':'<span>Photo of the empty rack *</span><small>so the curator can check rows and columns</small>'}</button>`:''}
+<div class="box">Name: <b>${esc(name)}</b> <span class="a">auto</span>${cap?` · ${cap} places`:''}</div>
+${dup?`<div class="box" style="background:#FFE6DB;color:#7C2D12">Looks like <b>${esc(dup.n)}</b> (${dup.r*dup.c} places), already in the list.<br><button class="c" style="margin-top:.4rem" data-rt="${esc(dup.n)}" data-cap="${dup.r*dup.c}" data-back="1">Use it instead</button></div>`:''}
+<button class="btn hot" style="flex:0 0 auto" data-lact="nrsend" ${okf?'':'disabled'}>Send to curator</button>
+<p class="lead" style="font-size:.78rem">Usable now, marked “waiting for curator” until checked.</p>
+<p class="lead" style="font-size:.78rem;text-align:center"><a href="javascript:void 0" data-lgo="curator" style="color:var(--green)">Curator view</a></p></div>`}
+if(L.scr==='curator'){const P=L.rt.filter(t=>t.s==='pending');h=`<div class="bar"><button class="ib" data-lgo="preparation" aria-label="Back">‹</button><b>Rack types · curator</b></div><div class="body">
+${P.length?P.map((t,i)=>`<div style="border:1px solid var(--line);padding:.8rem;display:flex;flex-direction:column;gap:.5rem"><b style="font-weight:500">${esc(t.n)}</b><div class="lead" style="font-size:.8rem">${t.r*t.c||'no fixed'} places · ${esc(t.man||'')} ${esc(t.ref||'')}<br>Proposed by ${esc(L.user||'a member')} · used by 1 rack · photo attached</div>
+<div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="c on" data-cur="ok" data-i="${L.rt.indexOf(t)}">Approve</button><select class="i" style="width:auto;flex-grow:1" id="mg${i}" aria-label="Merge into">${L.rt.filter(x=>x.s==='ok').map(x=>`<option>${esc(x.n)}</option>`).join('')}</select><button class="c" data-cur="merge" data-i="${L.rt.indexOf(t)}" data-sel="mg${i}">Merge</button><button class="c" data-cur="no" data-i="${L.rt.indexOf(t)}">Refuse</button></div></div>`).join(''):'<p class="lead">No proposal waiting.</p>'}
+<p class="h">Approved types (${L.rt.filter(t=>t.s==='ok').length})</p>${L.rt.filter(t=>t.s==='ok').map(t=>`<div class="row"><span style="flex-grow:1">${esc(t.n)}</span><span class="lead">${t.r*t.c||'–'}</span></div>`).join('')}</div>`}
+if(L.scr==='logistic')h=back('Logistic')+`<div class="body">${[['Attribute labels to containers','Link printed rack or box labels to a container model'],['Move containers','Scan a box, then its new place (freezer, shelf)']].map(([t,d])=>`<button class="mod" style="border:1px solid var(--line)"><div style="flex-grow:1">${t}<div class="lead" style="font-size:.75rem">${d}</div></div><span class="lead">›</span></button>`).join('')}</div>`;
+if(L.scr==='search'){const s=(L.q||'').toLowerCase().trim(),hits=[];if(s.length>2)Object.entries(L.racks).forEach(([lb,r])=>Object.entries(r.tubes).forEach(([p,id])=>{if(id.includes(s))hits.push([id,lb,p,r])}));
+h=back('Search')+`<div class="body"><div><label class="l" for="sq">Sample ID</label><input class="i mono" id="sq" data-lin2="q" value="${esc(L.q||'')}" placeholder="dbgi_006230"></div>
+${hits.slice(0,8).map(([id,lb,p])=>`<div class="row"><span class="mono" style="flex-grow:1">${id}</span><span><b class="mono">${lb}</b> · <b>${p}</b></span></div>`).join('')}
+${hits.length===1?(()=>{const [id,lb,p,r]=hits[0];return `<div class="lead" style="font-size:.8rem">${esc(r.type)} · Freezer B, shelf 3</div><div class="rmap" style="grid-template-columns:1.2rem repeat(${r.cols},minmax(0,1fr))"><span></span>${Array.from({length:r.cols},(_,c)=>`<span class="ax">${c+1}</span>`).join('')}${Array.from({length:r.rows},(_,ro)=>`<span class="ax">${'ABCDEFGHIJKLMNOP'[ro]}</span>`+Array.from({length:r.cols},(_,c)=>{const q=pos(ro,c);return `<span class="cell ${q===p?'n':r.tubes[q]?'f':''}">${q===p?'here':''}</span>`}).join('')).join('')}</div>`})():''}
+${s.length>2&&!hits.length?'<p class="lead">Not found in any rack.</p>':''}${s.length<3?'<p class="lead">Try dbgi_0062 (tubes of RACK_0040).</p>':''}</div>`}
+if(L.toast)h+=`<div class="toast">${L.toast}</div>`;
+a.innerHTML=h;const f=$('#wv');if(f&&L.w.id&&L.w.val==='')f.focus()}
+const pos=(r,c)=>'ABCDEFGHIJKLMNOP'[r]+(c+1);
+function nextPos(r){const cap=r.rows*r.cols;for(let k=r.from||0;k<cap-r.off;k++){const p=pos(k%r.rows,Math.floor(k/r.rows));if(!r.tubes[p])return p}return null}
+const wmsg=w=>{const v=parseFloat(w.val);if(w.val==='')return 'Type the weight shown on the balance.';if(!w.on)return '<span class="ok">Saved as typed.</span>';return v>=+w.min&&v<=+w.max?'<span class="ok">In range.</span>':`<span class="warn">Outside ${w.min}–${w.max} mg: saved with a flag.</span>`};
+const fmtDur=m=>m>=1440?Math.floor(m/1440)+' d '+Math.floor(m%1440/60)+' h':m>=60?Math.floor(m/60)+' h '+(m%60)+' min':m+' min';
+function setIn(s,v,st){const d=new Date(v),m=Math.round((d-new Date(s.ld))/60000);s.in=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})+' '+v.slice(11,16);s.sto=st||'-80 °C freezer';s.dur=fmtDur(Math.max(0,m))}
+const wellOf=i=>'ABCDEFGH'[Math.floor(i/12)%8]+(i%12+1);
+function rackMap(r,mark,act){return `<div class="rmap" style="grid-template-columns:1.2rem repeat(${r.cols},minmax(0,1fr))"><span></span>${Array.from({length:r.cols},(_,c)=>`<span class="ax">${c+1}</span>`).join('')}${Array.from({length:r.rows},(_,ro)=>`<span class="ax">${'ABCDEFGHIJKLMNOP'[ro]}</span>`+Array.from({length:r.cols},(_,c)=>{const q=pos(ro,c),id=r.tubes[q];return `<button class="cell ${q===mark?'n':id?'f':''}" ${act&&!id?`data-mvto="${q}"`:''} aria-label="${q}${id?' '+id:' free'}">${q===mark?'↓':id?id.slice(-3):''}</button>`}).join('')).join('')}</div>`}
+function dryView(){const d=L.dr;let h=`<div><label class="l" for="dpj">Project <span class="r">*</span></label><select class="i" id="dpj">${['jbn-new · Neuchâtel 2026','jbp-new · Prague 2026','jbc · Champex','artemisia_absinthium'].map(x=>`<option>${x}</option>`).join('')}</select></div>
+<div><span class="l">Drying in the lab <span class="r">*</span></span>${chips('L.dr.m',['Freeze-drying','Oven','Silica gel','None'],d.m)}</div>`;
+if(d.m!=='None'){h+=d.m==='Freeze-drying'?`<div><label class="l" for="ddev">Freeze-dryer <span class="a">remembered for this lab</span></label>${sel('L.dr.dev',['Christ Alpha 2-4 LSCbasic','Labconco FreeZone 4.5'],d.dev,'ddev')}</div>`:d.m==='Oven'?`<div><label class="l" for="dot">Oven temperature (°C) <span class="r">*</span></label><input class="i" id="dot" value="40"></div>`:'';
+h+=`<div class="g2"><div><label class="l" for="ddu">Drying time <span class="r">*</span></label><select class="i" id="ddu"><option>48 h</option><option>72 h</option><option>24 h</option><option>about a week</option></select></div><div><label class="l" for="dbf">Before, at -80 °C <span class="r">*</span></label><select class="i" id="dbf"><option>≥ 48 h</option><option>&lt; 24 h</option><option>&gt; 1 week</option><option>not frozen</option></select></div></div>
+<details><summary class="lead" style="font-size:.8rem;cursor:pointer">Dates, if you know them</summary><div class="g2" style="margin-top:.5rem"><input class="i" type="date" aria-label="First run" id="dfr"><input class="i" type="date" aria-label="Last run" id="dto"></div></details>`}
+h+=`<button class="btn hot" style="flex:0 0 auto" data-lact="drsave">Save for the project</button>${d.done.length?`<div class="box">${d.done.map(x=>`✓ ${esc(x)}`).join('<br>')}</div>`:''}
+`;return h}
+function moveView(){const m=L.mv;let h=`<div style="display:flex;border:1px solid var(--green)"><button class="c" style="flex:1;border:0" data-pmode="dry">Drying</button><button class="c" style="flex:1;border:0" data-lact="mvcancel">Fill a rack</button><button class="c on" style="flex:1;border:0">Move a tube</button></div>`;
+if(!m.id)return h+`<p class="lead"><b>1.</b> Scan the tube to move.</p>`+scanBox('Scan the tube','mvtube');
+const src=L.racks[m.from];h+=`<div class="box">Tube <b class="mono">${m.id}</b> is in <b class="mono">${m.from}</b> · <b>${m.fp}</b></div>`;
+if(!m.to)return h+`<p class="lead"><b>2.</b> Scan the rack it goes to.</p>`+scanBox('Scan the new rack label','mvrack')+`<button class="btn sec" style="flex:0 0 auto" data-lact="mvcancel">Cancel</button>`;
+const dst=L.racks[m.to];if(!m.tp)m.tp=nextPos(dst);
+return h+`<div class="box">To <b class="mono">${m.to}</b> · ${esc(dst.type)} · place <b>${m.tp||'none free'}</b></div><p class="lead" style="font-size:.78rem;margin:0"><b>3.</b> Next free place is proposed. Tap another empty place to choose it.</p>${rackMap(dst,m.tp,1)}
+<button class="btn hot" style="flex:0 0 auto" data-lact="mvok" ${m.tp?'':'disabled'}>Move to ${m.to} ${m.tp||''}</button><button class="btn sec" style="flex:0 0 auto" data-lact="mvcancel">Cancel</button>`}
+function nextSlot(){return L.al.list.findIndex(r=>r[0]==='sample'&&!r[1])}
+function parseOrder(t){const T=t.split(/[\s,;]+/).map(x=>x.trim().toLowerCase()).filter(x=>x&&x!=='type');return T.map(x=>/^(blk|blank|b)$/.test(x)?['blank']:/^(qc|pool)$/.test(x)?['QC']:/^(sample|smp|s)$/.test(x)?['sample',null]:null).filter(Boolean)}
+function alCsv(){const q=L.al;let b=0,c=0;return ['position,type,sample_id,aliquot_id,volume_ul,dilution',...q.list.map((r,i)=>{const id=r[0]==='sample'?r[1]:r[0]==='blank'?'blank_'+String(++b).padStart(2,'0'):'QC_'+String(++c).padStart(2,'0');return [wellOf(i),r[0],r[0]==='sample'?(r[1]||''):'',r[0]==='sample'?(r[1]?r[1]+'_01_01':''):id,q.vol,q.dil==='Yes'&&r[0]==='sample'?'1:'+q.fac:'none'].join(',')})].join('\n')}
+/* ---------- événements ---------- */
+const setPath=(p,v)=>{if(!p.includes('.')){F[p]=v;return}const [o,...k]=p.split('.');let t={s:F.s,cur:F.cur,L}[o]||F;const last=k.pop();k.forEach(x=>t=t[x]);t[last]=v};
+const toast=(o,m)=>{o.toast=m;render();clearTimeout(o._t);o._t=setTimeout(()=>{o.toast='';render()},2200)};
+document.addEventListener('click',e=>{const b=e.target.closest('button,[data-go],[data-lgo],[data-lact]');if(!b)return;const d=b.dataset;
+ if(b.id==='sF'||b.id==='sL'){APP=b.id==='sF'?'field':'lab';$('#sF').classList.toggle('on',APP==='field');$('#sL').classList.toggle('on',APP==='lab');render();return}
+ if(d.set){setPath(d.set,d.v);if(d.set==='s.pres'){F.s.pack=PACK[d.v];F.s.trans=['Liquid N2','Dry ice'].includes(d.v)?d.v:'Ambient'}if(d.set==='cur.pres'){F.cur.pack=PACK[d.v];F.cur.frozen=''}if(d.set==='cur.soil')F.s.soil=d.v;if(d.set==='cur.weather')F.s.weather=d.v;render();return}
+ if(d.go){F.scr=d.go;render();return}
+ if(d.tab){F.tab=+d.tab;render();$('.body').scrollTop=0;return}
+ if(d.proj){F.proj=d.proj;F.s.garden=d.g;F.scr='session';toast(F,`Project ${d.proj} downloaded for offline use.`);return}
+ if(d.pick){const t=TAXA[+d.pick];Object.assign(F.cur,{taxon:t[0],fam:t[1],ipen:t[2],q:t[0]});render();return}
+ if(d.photo){F.cur.photos[d.photo]=F.cur.photos[d.photo]?false:now();if(!F.cur.photos[d.photo])delete F.cur.photos[d.photo];render();return}
+ if(d.cur){const t=L.rt[+d.i];if(d.cur==='ok'){t.s='ok';toast(L,'Approved: now in everyone\'s list.')}else{L.rt.splice(+d.i,1);toast(L,d.cur==='merge'?`Merged into ${$('#'+d.sel).value}. Its racks were moved over.`:'Refused. The proposer is told why.')}return}
+ if(d.rt){if(d.back)L.scr='preparation';const t=L.rt.find(x=>x.n===d.rt);L.racks[L.rack.label]={type:d.rt,rows:t?t.r:0,cols:t?t.c:0,off:0,tubes:{}};toast(L,`${L.rack.label} is now a ${d.rt}.`);return}
+ if(d.col!==undefined){const r=L.racks[L.rack.label];r.from=+d.col*r.rows;L.cell='';const p=nextPos(r);toast(L,p?`Next scan goes to ${p}.`:'No free place from there.');return}
+ if(d.wed){const w=L.w;if(d.wed==='open')w.edit=+d.i;else if(d.wed==='cancel')w.edit=null;else{const r=w.done[+d.i],v=(+$('#we').value).toFixed(1);if(v!==String(r[1])){r[2]=r[2]||r[1];r[1]=v;w.edit=null;toast(L,`${r[0]} corrected to ${v} mg. ${L.pr.on?'New label printed.':''}`);return}w.edit=null}render();return}
+ if(d.pv!==undefined){const p=F.prev[+d.pv],v=$('#pv'+d.k).value;p.in=v;const s=L.rc.sess.find(x=>x.id===p.id);if(s)setIn(s,v);toast(F,`${p.id}: in the freezer ${v.replace('T',' at ')}${s?', '+s.dur+' after the last tube':''}.`);return}
+ if(d.rcin!==undefined){const s=L.rc.sess[+d.rcin];setIn(s,$('#rt'+d.rcin).value,$('#rs'+d.rcin).value);if(L.off.on)L.off.q++;toast(L,`${s.id}: ${s.n} tubes, ${s.dur} before the freezer.`);return}
+ if(d.pmode){L.pmode=d.pmode;if(d.pmode==='move')L.mv={};if(d.pmode!=='move')L.mv=null;render();return}
+ if(d.mvto){L.mv.tp=d.mvto;render();return}
+ if(d.mv){const Q=L.al.list,i=+d.i;if(d.mv==='x'){const r=Q.splice(i,1)[0];toast(L,(r[0]==='sample'?(r[1]||'Empty sample slot'):r[0]==='blank'?'Blank':'QC')+' removed.')}else{const j=i+ +d.mv;[Q[i],Q[j]]=[Q[j],Q[i]];render()}return}
+ if(d.cell){L.fix=false;{const r=L.racks[L.rack.label];if(r&&!r.tubes[d.cell]){const ro='ABCDEFGHIJKLMNOP'.indexOf(d.cell[0]),c=+d.cell.slice(1)-1,k=c*r.rows+ro;if(k<r.rows*r.cols-r.off){r.from=k;L.cell='';toast(L,`Next scan goes to ${d.cell}.`);return}}}L.cell=d.cell;render();return}
+ if(d.lgo){L.scr=d.lgo;render();return}
+ const A=d.act,LA=d.lact;
+ if(A==='new'){F.cur=newSample();F.tab=0;F.scr='form';render()}
+ if(A==='endsess'){F.ended=`${$('#eto').value} at ${now()}: transport time saved for ${F.done.length} tubes.`;render()}
+ if(A==='fprint'){if(L.pr.on)L.pr.on=false;else L.pr={...L.pr,on:true,name:'Brady M211'};toast(F,L.pr.on?'Connected to Brady M211. Also used by the lab app.':'Printer disconnected.')}
+ if(A==='login'){F.scr='projects';render()}
+ if(A==='logout'){F.scr='login';render()}
+ if(A==='cancel'){F.scr='map';F.cur=null;render()}
+ if(A==='scan'){F.cur.id='dbgi_'+String(nextId).padStart(6,'0');render()}
+ if(A==='freeze'){if(!F.cur.frozen){const t=new Date(Date.now()+120000);F.cur.frozen=t.toTimeString().slice(0,5)}render()}
+ if(A==='save'||A==='savenext'){const c=F.cur;if(!c.id||!c.taxon){F.tab=0;toast(F,'Scan the tube and choose a taxon first.');return}
+  const mp=PHOTOS.slice(0,5).filter(p=>!c.photos[p[0]]).length;F.done.push({id:c.id,t:c.taxon,x:40+Math.random()*30,y:45+Math.random()*25,sent:0,miss:mp?mp+' photo'+(mp>1?'s':'')+' missing':''});nextId++;
+  if(A==='savenext'){F.cur=newSample();F.tab=0;toast(F,`${c.id} saved. Ready for the next plant.`)}else{F.scr='map';F.cur=null;toast(F,`${c.id} saved on the phone.`)}}
+ if(A==='send'){F.done.forEach(d=>d.sent=1);toast(F,'Sent. The samples appear on the portal within minutes.')}
+const lbl=id=>{if(L.off.on)L.off.q++;return (L.off.on?'Saved offline. ':'')+(L.pr.on?`Label printed: ${id}`:`No printer connected: connect one to print ${id}.`)};
+ const nid=()=>'dbgi_'+pad(L.nx++);
+ if(LA==='prsearch'){L.pr.searching=true;render()}
+ if(LA==='prpick'){L.pr={...L.pr,on:true,name:d.n,searching:false};toast(L,'Connected to '+d.n+'.')}
+ if(LA==='proff'){L.pr.on=false;render()}
+ if(LA==='prtest')toast(L,L.pr.on?'Test label printed.':'No printer.');
+ if(LA==='mkbatch'){const nb=L.nb;if(!nb.short.trim()){toast(L,'Give the batch a short description.');return}const id='batch_'+pad(31+L.batches.length-3);L.batches.unshift([id,nb.type,nb.short,nb.desc]);L.nb={type:nb.type,short:'',desc:'',com:''};toast(L,id+' created. '+(nb.type==='extraction'?(L.pr.on?`Blank label printed: ${id}_blank.`:'Connect a printer to print the blank label.'):''))}
+ if(LA==='login'){L.scr='home';render()}
+ if(LA==='logout'){L.scr='login';render()}
+ if(LA==='nrphoto'){L.nrt.photo=true;render()}
+ if(LA==='nrsend'){const n=L.nrt,name=n.k==='Bag'?`Bag · ${n.man}`:`${n.k} ${n.r} × ${n.c} · ${n.t}`;L.rt.push({n:name,k:n.k,r:+n.r||0,c:+n.c||0,t:n.t,man:n.man,ref:n.ref,s:'pending'});if(L.rack.label)L.racks[L.rack.label]={type:name,rows:+n.r||0,cols:+n.c||0,off:0,tubes:{}};L.nrt={k:'Box',r:'',c:'',t:'2 mL tube',man:'',ref:'',photo:false};L.scr='preparation';toast(L,'Sent to the curator. You can use it for this rack now.')}
+ if(LA==='prepscan'){const r=L.racks[L.rack.label],id=nid();if(!r.rows){(r.bag=r.bag||[]).push(id);toast(L,id+' added to the bag.');return}const p=nextPos(r);if(!p){toast(L,'Rack full.');return}r.tubes[p]=id;L.cell=p;toast(L,`${id} → ${L.rack.label} ${p}`)}
+ if(LA==='rkscan'){L.rack={label:'RACK_'+String(L.rkn++).padStart(4,'0')};L.cell='';render()}
+ if(LA==='rkknown'){L.rack={label:'RACK_0040'};L.cell='';render()}
+ if(LA==='rcscan'){const k=L.rc.list.length;L.rc.list.push(k===3?['dbgi_007099','',1]:['dbgi_'+pad(7031+k),'10 Nov 10:'+String(44+k*7).padStart(2,'0'),0,27+k]);if(L.off.on)L.off.q++;render()}
+ if(LA==='drsave'){const p=$('#dpj').value.split(' · ')[0];L.dr.done.push(L.dr.m==='None'?`${p}: no drying`:`${p}: ${L.dr.m.toLowerCase()}${L.dr.m==='Freeze-drying'?' ('+L.dr.dev+')':''}, ${$('#ddu').value}, ${$('#dbf').value} at -80 °C before`);toast(L,'Saved: every tube of the project gets this drying.')}
+ if(LA==='drscan'){L.dr.n++;if(L.off.on)L.off.q++;render()}
+ if(LA==='drstart'){L.dr.run=true;L.dr.h=0;toast(L,'Run started: time before drying saved for each tube.')}
+ if(LA==='drh'){L.dr.h+=12;render()}
+ if(LA==='drstop'){L.dr.done.push([L.dr.n,L.dr.h]);L.dr.run=false;L.dr.n=0;toast(L,'Run stopped: duration saved. Tubes are ready for Fill a rack.')}
+ if(LA==='gropen'){L.gr.open=!L.gr.open;render()}
+ if(LA==='timer')toast(L,`Timer started: ${L.exs.agmin} min. The time is saved on the batch.`);
+ if(LA==='msok'){const id='batch_'+pad(31+L.batches.length-3);L.batches.unshift([id,'ms',L.ms.meth,`${L.ms.lc} · ${L.ms.col} · ${L.ms.pol}`]);toast(L,id+' created. RAW files will link to it by name.')}
+ if(LA==='sync'){L.off.q=0;toast(L,'Synced with Directus.')}
+ if(LA==='mvstart'){L.mv={};render()}
+ if(LA==='mvcancel'){L.mv=null;L.pmode='fill';render()}
+ if(LA==='mvtube'){const r=L.racks.RACK_0040,ps=Object.keys(r.tubes),p=ps[Math.floor(Math.random()*ps.length)];L.mv={id:r.tubes[p],from:'RACK_0040',fp:p};render()}
+ if(LA==='mvrack'){L.mv.to='RACK_0041';L.mv.tp=null;render()}
+ if(LA==='mvok'){const m=L.mv;delete L.racks[m.from].tubes[m.fp];L.racks[m.to].tubes[m.tp]=m.id;L.mv=null;toast(L,`${m.id}: ${m.from} ${m.fp} → ${m.to} ${m.tp}`)}
+ if(LA==='fromreset'){L.racks[L.rack.label].from=0;render()}
+ if(LA==='cellrescan'){const r=L.racks[L.rack.label],old=r.tubes[L.cell],id=nid();r.tubes[L.cell]=id;toast(L,`${L.cell}: ${old} replaced by ${id}.`)}
+ if(LA==='cellempty'){const r=L.racks[L.rack.label],old=r.tubes[L.cell];delete r.tubes[L.cell];toast(L,`${old} removed from ${L.cell}. The next scan fills it.`)}
+ if(LA==='blank'){const n=+($('#bl'+d.i)||{value:1}).value||1;toast(L,L.pr.on?`${n} blank label${n>1?'s':''} printed: ${d.id}_blank`:'No printer connected: connect one to print the blank labels.')}
+ if(LA==='fix'){L.fix=true;render()}
+ if(LA==='fixok'){const r=L.racks[L.rack.label],v=+$('#fx').value,used=Object.keys(r.tubes).length;r.off=Math.max(0,r.rows*r.cols-used-v);L.fix=false;toast(L,`${v} free places saved.`)}
+ if(LA==='rkcancel'||LA==='rkclose'){if(LA==='rkclose')toast(L,`${L.rack.label} closed.`);L.rack={label:''};L.cell='';L.fix=false;render()}
+ if(LA==='wscan'){const t=TAXA[L.nx%TAXA.length];L.w.id=nid();L.w.val='';L.w.sp=t[0]+' · leaf · freeze-dried';render()}
+ if(LA==='wcancel'){L.w.id='';render()}
+ if(LA==='wprint'){const w=L.w;w.done.push([w.id,(+w.val).toFixed(1)]);const id=w.id+'_01';w.id='';w.val='';toast(L,lbl(id)+' Scan the next tube.')}
+ if(LA==='exscan'){const id=nid();L.ex.done.push(id);toast(L,lbl(id+'_01'))}
+ if(LA==='alblank'){L.al.list.push(['blank']);render()}
+ if(LA==='alqc'){L.al.list.push(['QC']);render()}
+ if(LA==='alscan'){const id=nid(),k=nextSlot();if(k>=0)L.al.list[k][1]=id;else L.al.list.push(['sample',id]);toast(L,lbl(id+'_01_01')+' → '+wellOf(k>=0?k:L.al.list.length-1))}
+ if(LA==='altpl'){L.al.list=parseOrder('blk qc sample sample sample sample sample qc sample sample sample sample sample qc blk');toast(L,'Example order loaded: 15 lines, 10 sample slots.')}
+ if(LA==='alok'){const id='batch_'+pad(31+L.batches.length-3),n=L.batches.filter(b=>b[1]==='aliquots').length+1,s=L.al.list.filter(r=>r[0]==='sample').length;L.batches.unshift([id,'aliquots',`plate ${n}`,`${s} samples, ${L.al.list.length} injections, ${L.al.vol} µL`]);L.al.list=[];toast(L,`Plate validated: ${id} created with its CSV.`)}
+ if(LA==='alclear'){L.al.list=[];render()}
+ if(LA==='alpaste'){const r=parseOrder($('#alpaste').value);if(!r.length){toast(L,'Nothing recognised: use blk, qc or sample, one per line.');return}L.al.list=r;toast(L,`Order loaded: ${r.length} lines.`)}
+ if(LA==='alcsv'){const t=alCsv();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast(L,'CSV copied: paste it into the instrument sequence.'),()=>toast(L,'Select the CSV text to copy it.'))}
+});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.alfile&&t.files[0]){t.files[0].text().then(x=>{const r=parseOrder(x);if(!r.length){toast(L,'No blk / qc / sample found in the file.');return}L.al.list=r;toast(L,`${t.files[0].name}: ${r.length} lines loaded.`)})}});
+document.addEventListener('input',e=>{const t=e.target,d=t.dataset;
+ if(d.in){const v=t.type==='range'?+t.value:t.value;setPath(d.in,v);if(d.in==='cur.q'){F.cur.taxon=F.cur.manual?v:'';render();const x=$('#tx');x.focus();x.setSelectionRange(v.length,v.length)}else if(d.in==='cur.herb'){$('#hbv').textContent=v}else if(t.tagName==='SELECT')render()}
+ if(d.lin)L[d.lin]=t.value;
+ if(d.off){L.off.on=!t.checked;render()}
+ if(d.wrng){if(d.wrng==='on'){L.w.on=t.checked;render()}else{L.w[d.wrng]=t.value;const m=$('#wmsg');if(m)m.innerHTML=wmsg(L.w)}}
+ if(d.lin2){const [o,k]=d.lin2.includes('.')?d.lin2.split('.'):[null,d.lin2];if(o)L[o][k]=t.value;else L[k]=t.value;
+  if(d.lin2==='w.val'){$('#wmsg').innerHTML=wmsg(L.w);$('[data-lact=wprint]').disabled=t.value===''}
+  else if(['nrt.r','nrt.c','nrt.man'].includes(d.lin2)){const id=t.id;render();const x=$('#'+id);x.focus();x.setSelectionRange(x.value.length,x.value.length)}
+  else if(d.lin2==='q'){render();const x=$('#sq');x.focus();x.setSelectionRange(x.value.length,x.value.length)}
+  else if(d.lin2==='al.vol'||d.lin2==='al.fac'){const p=document.querySelector('pre');if(p)p.textContent=alCsv()}}
+ if(d.chk){setPath(d.chk,t.checked);if(d.chk==='cur.manual'&&t.checked&&F.cur.q){F.cur.taxon=F.cur.q;F.cur.fam='to check'}render()}
+});
+render();
+</script>
+</body>
+</html>
+
+</body></html>
