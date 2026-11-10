@@ -41,29 +41,6 @@ dbgi_methods/
     └── unmatched.csv                 what could not be linked (to check)
 ```
 
----
-
-## Files to add before running
-
-Put these files exactly here (paths are relative to this folder):
-
-```
-dbgi_methods/
-├── metadata_all_merged.csv                 ← step 00 output (required)
-├── massive_metadata_complete_set.tsv       ← MassIVE metadata (required)
-├── directus/output/directus_metadata.csv   ← renamed Directus export (strongly recommended)
-└── 02_sampling/
-    └── batch_mzmine/*.mzbatch              ← all MZmine batch files (required)
-```
-
-Then, from this folder:
-
-```r
-setwd("path/to/dbgi_methods")
-source("02_sampling/02_inst.r")              # step 02 -> 02_sampling/output/sampling_metadata.csv
-BASE_DIR <- "."
-source("src/build_final_table.R")            # final tables -> output/
-```
 
 `build_final_table.R` reads `02_sampling/output/sampling_metadata.csv` when it exists,
 otherwise the extract shipped in `input/sampling_metadata.csv`.
