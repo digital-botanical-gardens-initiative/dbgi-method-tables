@@ -18,13 +18,17 @@ still to be decided.
 dbgi_methods/
 ├── README.md                         this file
 ├── CURATION.md                       every manual choice and correction
+├── LICENSE                           CC0 1.0
+├── .gitignore                        input data kept out of git
 ├── src/
 │   └── build_final_table.R           the script that builds the final table
 ├── 02_sampling/                      upstream: the scripts that produce input/sampling_metadata.csv
 │   ├── 02_inst.r                     runs step 02
 │   ├── 02_sampling_metadata.R        garden defaults + MZmine batches -> 1 row / MS file
 │   ├── 02_sampling_correction.R      Directus (reference) + MassIVE + manual corrections
-│   └── garden_defaults.R             per-garden protocol written by hand (with sources)
+│   ├── garden_defaults.R             per-garden protocol written by hand (with sources)
+│   └── batch_mzmine/                 .mzbatch files go here (not versioned)
+├── directus/output/                  directus_metadata.csv goes here (not versioned)
 ├── input/
 │   ├── sampling_metadata.csv         the MS files (output of step 02, 12 columns used)
 │   ├── sub_tables/                   67 sub-tables: the options of each parameter
@@ -40,6 +44,157 @@ dbgi_methods/
     │   └── method_tables/            the 6 method tables, written with sub-table ids
     └── unmatched.csv                 what could not be linked (to check)
 ```
+
+---
+
+## File index
+
+Every file of the repository, what it is and who uses it.
+
+### Root
+
+| File | Content |
+|------|---------|
+| `README.md` | this file |
+| `CURATION.md` | every manual choice, correction and assumption (hand-written tables, `garden_defaults.R` values with their reliability, step 02 corrections, choices of `build_final_table.R`, open points) |
+| `LICENSE` | CC0 1.0: code and tables are public domain |
+| `.gitignore` | keeps step 02 input data (large or personal) and intermediate outputs out of the repository |
+
+### `src/`
+
+| File | Content |
+|------|---------|
+| `build_final_table.R` | builds the final table in two versions (sections 2 and 3). Reads `input/` and the step 02 output, writes `output/`. Needs R + `data.table`. |
+
+### `02_sampling/` (step 02, upstream)
+
+| File | Content |
+|------|---------|
+| `02_inst.r` | launcher of step 02: sets `BASE_DIR` and `FORCE_ALL`, runs the two scripts below, prints files per sample and per garden |
+| `02_sampling_metadata.R` | reads `metadata_all_merged.csv`, applies `garden_defaults.R` to every MS file of each garden, parses the `.mzbatch` files and gives each file the MZmine parameters of the batch that processed it, recovers Kew file names from `JBK_batch.mzbatch`. Writes `02_sampling/output/sampling_metadata.csv` (1 row / MS file). Needs `dplyr`, `xml2`. |
+| `02_sampling_correction.R` | corrects that file in place: Directus values override (reference), MassIVE fills empty cells, dates and coordinates normalised, wrong gardens and instruments fixed, remaining gaps imputed. Writes `sampling_metadata_conflits.csv` (replaced values). Needs `data.table`. |
+| `garden_defaults.R` | configuration, not code: one block per garden (JBN, JBC, JBP, JBUF, JBK) with the protocol values no database stores (preservation, transport, extraction, all LC-MS settings, QC, MassIVE accession, batch id), each commented with its source; `INSTRUMENT_OVERRIDES` for the Fribourg Q Exactive HF-X |
+| `batch_mzmine/.gitkeep` | empty file keeping the folder where the `.mzbatch` files go (not versioned) |
+
+### `directus/output/`
+
+| File | Content |
+|------|---------|
+| `.gitkeep` | empty file keeping the folder where `directus_metadata.csv` goes (not versioned: contains names and ORCID) |
+
+### `input/`
+
+| File | Content |
+|------|---------|
+| `sampling_metadata.csv` | the MS files read by `build_final_table.R`: 4 361 rows, the 12 columns used (see 1.1). Extract of the complete DBGI metadata export; replaced by the step 02 output when it exists. |
+
+### `input/config/`
+
+| File | Content |
+|------|---------|
+| `dbgi_batches.csv` | 1 row per acquisition batch (`JBN_synapt_2025`, `JBC_zenotof_2026`, `JBP_orbitrap_2026`, `JBK_2025`, `JBUF_qexactive_2024`, `JBUF_hfx`): garden and the 6 default method codes |
+| `final_table_columns.csv` | the 86 columns of the final table, in order: column name, label, step, sub-table, level (core / optional), source (Directus / people / mzML-RAW file) |
+
+### `input/method_tables/`
+
+| File | Content |
+|------|---------|
+| `identification_methods.csv` | I1: identification method |
+| `sampling_methods.csv` | S1–S3: preservation, primary / secondary packaging, transport temperature and duration, storage temperature and container |
+| `drying_methods.csv` | D1–D2: lab drying, delay before drying, duration |
+| `extraction_methods.csv` | E1–E5: Directus extraction method, material state, grinding (device, beads, pre-cooling, time, frequency), solvent and volume, agitation, centrifugation, filtration, supernatant, extract storage and container |
+| `lcms_methods.csv` | L1–L6: one column per instrument method (Synapt XS, ZenoTOF 8600, Orbitrap ID-X, Orbitrap Exploris 120, Q Exactive Plus, Q Exactive HF-X), one row per parameter (152) with page, group, description, unit, source and level |
+| `processing_methods.csv` | P1–P2: raw conversion tool and version, processing software, MZmine batch file |
+
+### `input/sub_tables/`
+
+One file per parameter: `id`, the option, `description`, `details` (some have
+extra columns, e.g. vendor). "Used by" = columns of the final table that point to it.
+
+| File | Step | Content | Rows | Used by |
+|------|------|---------|------|---------|
+| `acquisition_mode_sheet.csv` | 5. LC-MS | Acquisition mode | 6  `acquisition_mode` |
+| `acquisition_software_sheet.csv` | 5. LC-MS | Acquisition software | 10  `lc_software, ms_software` |
+| `agc_mode_sheet.csv` | 5. LC-MS | AGC target mode | 2  `ms1_agc_mode, ms2_agc_mode` |
+| `air_drying_place_sheet.csv` | 2. Sampling | Where air-dried samples dry | 4  `air_drying_place` |
+| `background_exclusion_sheet.csv` | 5. LC-MS | Background exclusion strategy | 5  `background_exclusion` |
+| `ce_mode_sheet.csv` | 5. LC-MS | Collision energy mode | 4  `ce_mode` |
+| `ce_type_sheet.csv` | 5. LC-MS | Collision energy type | 2  `ce_type` |
+| `column_model_sheet.csv` | 5. LC-MS | Column model | 13  `column_model` |
+| `column_oven_mode_sheet.csv` | 5. LC-MS | Column oven mode | 2  `column_oven_mode` |
+| `data_type_sheet.csv` | 5. LC-MS | Spectrum data type | 2  `ms1_data_type, ms2_data_type` |
+| `dd_mode_sheet.csv` | 5. LC-MS | Data-dependent mode | 2  `dd_mode` |
+| `ethanol_liquid_use_sheet.csv` | 2. Sampling | Use of the ethanol after preservation | 4  `ethanol_liquid_use` |
+| `external_calibration_sheet.csv` | 5. LC-MS | External calibration | 4  `external_calibration` |
+| `extract_container_sheet.csv` | 4. Extraction | Extract container | 5  `extract_container` |
+| `extract_evaporation_method_sheet.csv` | 4. Extraction | Evaporation of extracts | 3  `extract_evaporation_method` |
+| `extract_storage_temperature_sheet.csv` | 4. Extraction | Extract storage temperature before injection | 6  `extract_storage_temperature` |
+| `extraction_agitation_sheet.csv` | 4. Extraction | Agitation during extraction | 5  `extraction_agitation` |
+| `extraction_solvent_sheet.csv` | 4. Extraction | Extraction solvent | 12  `field_extraction_solvent, extraction_solvent` |
+| `faims_sheet.csv` | 5. LC-MS | FAIMS | 3  `faims` |
+| `field_disruption_sheet.csv` | 2. Sampling | Tissue disruption in the field (field extraction) | 6  `ethanol_tissue_disruption, rnalater_tissue_disruption, field_disruption` |
+| `field_extract_postprocessing_sheet.csv` | 2. Sampling | Treatment of field extracts in the lab | 4  `field_extract_postprocessing` |
+| `field_extraction_tube_sheet.csv` | 2. Sampling | Tube used for field extraction | 5  `ethanol_container, rnalater_container, field_extraction_tube` |
+| `field_mass_method_sheet.csv` | 2. Sampling | How the tissue amount is measured (field extraction) | 4  `field_mass_method` |
+| `filtration_sheet.csv` | 4. Extraction | Filtration / clean-up | 6  `filtration` |
+| `fragmentation_method_sheet.csv` | 5. LC-MS | Activation type | 4  `fragmentation_method` |
+| `garden_sheet.csv` | Other (QC, people, gardens) | Garden / collection | 20  `garden_id` |
+| `gradient_curve_sheet.csv` | 5. LC-MS | Gradient curve | 3  `gradient_curve` |
+| `grinding_beads_sheet.csv` | 4. Extraction | Grinding beads | 6  `field_beads, grinding_beads` |
+| `grinding_device_sheet.csv` | 4. Extraction | Grinding device | 6  `grinding_device, bead_homog_device` |
+| `grinding_precooling_sheet.csv` | 4. Extraction | Pre-cooling before grinding | 4  `grinding_precooling` |
+| `identification_method_sheet.csv` | 1. Identification | Identification method | 6  `identification_method` |
+| `injection_mode_sheet.csv` | 5. LC-MS | Injection mode | 4  `injection_mode` |
+| `instrument_model_sheet.csv` | 5. LC-MS | MS instrument | 14  `instrument_model` |
+| `ionization_polarity_sheet.csv` | 5. LC-MS | Polarity | 3  `ionization_polarity` |
+| `ionization_source_sheet.csv` | 5. LC-MS | Ion source | 8  `ionization_source` |
+| `isolation_mode_sheet.csv` | 5. LC-MS | Isolation mode | 2  `isolation_mode` |
+| `isotope_exclusion_sheet.csv` | 5. LC-MS | Isotope exclusion | 3  `isotope_exclusion` |
+| `lab_drying_sheet.csv` | 3. Lab drying | Drying in the lab (after preservation) | 4  `lab_drying` |
+| `lc_model_sheet.csv` | 5. LC-MS | LC system model | 11  `lc_model` |
+| `lock_mass_correction_sheet.csv` | 5. LC-MS | Lock mass / internal calibration | 6  `lock_mass_correction` |
+| `material_state_sheet.csv` | 4. Extraction | Material weighed and extracted (fresh or dry weight) | 3  `material_state` |
+| `max_it_mode_sheet.csv` | 5. LC-MS | Maximum injection time mode | 3  `ms1_max_it_mode, ms2_max_it_mode` |
+| `mobile_phase_modifier_sheet.csv` | 5. LC-MS | Mobile phase modifier | 6  `mobile_phase_a_modifier, mobile_phase_b_modifier` |
+| `mobile_phase_solvent_sheet.csv` | 5. LC-MS | Mobile phase solvent | 4  `mobile_phase_a_solvent, mobile_phase_b_solvent` |
+| `needle_wash_mode_sheet.csv` | 5. LC-MS | Needle wash | 4  `needle_wash_mode` |
+| `observation_subject_sheet.csv` |  | observation subject | 11  `observation_subject` |
+| `oven_type_sheet.csv` | 2. Sampling | Oven type | 4  `oven_type` |
+| `peak_picking_sheet.csv` | 6. Data processing | Peak picking | 4  `peak_picking` |
+| `person_sheet.csv` | Other (QC, people, gardens) | People | 54  `collector` |
+| `preservation_method_sheet.csv` | 2. Sampling | Preservation method | 9  `preservation_method` |
+| `primary_packaging_sheet.csv` | 2. Sampling | Primary packaging | 10  `primary_packaging` |
+| `processing_software_sheet.csv` | 6. Data processing | Processing software | 7  `processing_software` |
+| `q1_resolution_sheet.csv` | 5. LC-MS | Q1 resolution (Sciex) | 4  `q1_resolution` |
+| `raw_conversion_tool_sheet.csv` | 6. Data processing | Raw to mzML conversion | 4  `raw_conversion_tool` |
+| `redissolution_solvent_sheet.csv` | 4. Extraction | Redissolution solvent | 5  `field_redissolution_solvent, redissolution_solvent` |
+| `rnalater_removal_sheet.csv` | 2. Sampling | RNAlater removal before extraction | 4  `rnalater_removal` |
+| `sample_dilution_sheet.csv` | 5. LC-MS | Extract dilution | 5  `sample_dilution` |
+| `secondary_packaging_sheet.csv` | 2. Sampling | Secondary packaging | 7  `secondary_packaging` |
+| `shaker_type_sheet.csv` | 4. Extraction | Shaker type | 4  `shaker_type` |
+| `sonication_type_sheet.csv` | 4. Extraction | Sonicator type | 2  `sonication_type` |
+| `spray_voltage_mode_sheet.csv` | 5. LC-MS | Spray voltage mode | 2  `spray_voltage_mode` |
+| `storage_container_sheet.csv` | 2. Sampling | Storage container | 6  `storage_container` |
+| `storage_temperature_sheet.csv` | 2. Sampling | Storage temperature | 5  `ethanol_storage_temperature, rnalater_storage_temperature, dried_storage_temperature, storage_temperature` |
+| `time_before_drying_sheet.csv` | 3. Lab drying | Delay before lab drying | 4  `time_before_drying` |
+| `transport_duration_sheet.csv` | 2. Sampling | Transport duration | 5  `transport_duration` |
+| `transport_temperature_sheet.csv` | 2. Sampling | Transport temperature | 5  `field_extract_temperature, transport_temperature` |
+| `uv_detection_sheet.csv` | 5. LC-MS | UV detection | 3  `uv_detection` |
+
+### `output/` (produced by `build_final_table.R`)
+
+| File | Content |
+|------|---------|
+| `version_A_link_to_sub_tables/final_table.csv` | version A: 1 row / MS file, `sample_id`, `mzml_filename`, `garden` + 86 sub-table ids |
+| `version_B_link_to_method_codes/final_table.csv` | version B: 1 row / MS file, `sample_id`, `mzml_filename`, `garden`, 4 per-file sub-table ids (garden, collector, plant part, polarity) + the 6 method codes |
+| `version_B_link_to_method_codes/method_tables/*.csv` | the 6 method tables of `input/method_tables/` with every option replaced by its sub-table id; `lcms_methods.csv` turned to 1 row per method |
+| `unmatched.csv` | files and values that could not be linked: `sample_id`, `mzml_filename`, `garden`, `what`, `value` |
+
+### Not in the repository (see "Files to add before running")
+
+`metadata_all_merged.csv`, `massive_metadata_complete_set.tsv`,
+`directus/output/directus_metadata.csv`, `02_sampling/batch_mzmine/*.mzbatch`,
+and the step 02 outputs in `02_sampling/output/`.
 
 ---
 
@@ -293,7 +448,7 @@ choices made by `build_final_table.R`.
 | `garden_id` | 0. Directus | `garden_sheet.csv` | Directus | core |
 | `collector` | 0. Directus | `person_sheet.csv` | Directus | core |
 | `observation_subject` | 0. Directus | `observation_subject_sheet.csv` | Directus | core |
-| `extraction_method` | 0. Directus | `extraction_methods_sheet.csv` | Directus | core |
+| `extraction_method` | 0. Directus | `input/method_tables/extraction_methods.csv` (E code) | Directus | core |
 | `identification_method` | 1. Identification | `identification_method_sheet.csv` | people | core |
 | `preservation_method` | 2. Sampling | `preservation_method_sheet.csv` | people | core |
 | `air_drying_place` | 2. Sampling | `air_drying_place_sheet.csv` | people | optional |
